@@ -10,5 +10,6 @@ public interface LocataireDao extends JpaRepository<Locataire, Long> {
 	
 	Locataire findByDateHeureInscription(LocalDateTime dateHeureInscription);
 	
+	
 
 }
