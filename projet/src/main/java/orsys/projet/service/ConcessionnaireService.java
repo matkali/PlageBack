@@ -1,5 +1,8 @@
 package orsys.projet.service;
 
-public class ConcessionnaireService {
+import org.springframework.stereotype.Service;
 
+@Service
+public interface ConcessionnaireService {
+	
 }
