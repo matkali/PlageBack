@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.PastOrPresent;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,12 +22,14 @@ import lombok.ToString;
 @Entity
 public class Locataire extends Utilisateur{
 	@NonNull
+	@PastOrPresent
 	private LocalDateTime dateHeureInscription;
 	
 	@ManyToOne
 	private LienDeParente lienDeParente;
 	
 	@ManyToOne
+	@NonNull
 	private Pays pays;
 	
 	@OneToMany(mappedBy = "locataire", fetch = FetchType.EAGER)
