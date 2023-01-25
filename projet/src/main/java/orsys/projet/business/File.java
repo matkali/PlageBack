@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.Range;
 
@@ -22,9 +23,10 @@ public class File {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@Range(min=1, max=8)
+	@Range(min=1, max=8, message="la rangée est comprise entre 1 et 8")
 	private byte numero;
 	
+	@Min(value=0, message="Le prix doit être positif")
 	private double prixJournalier;
 	
 	@OneToMany(mappedBy="file", fetch=FetchType.EAGER)

@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NonNull;
 
 @Data
 @Entity
@@ -17,6 +18,7 @@ public class Statut {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@NonNull
 	@Column(length=123)
 	private String nom;
 }

@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NonNull;
 
 @Data
 @Entity
@@ -22,8 +23,10 @@ public class Location {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@NonNull
 	private LocalDateTime dateHeureDebut;
 	
+	@NonNull
 	private LocalDateTime dateHeureFin;
 	
 	private double montantAReglerEnEuros;
