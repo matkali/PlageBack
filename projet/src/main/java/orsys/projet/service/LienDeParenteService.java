@@ -6,7 +6,7 @@ import orsys.projet.business.LienDeParente;
 
 public interface LienDeParenteService {
 	
-	LienDeParente ajouterLienDeParente (String nom, float coefficient);
+	LienDeParente enregistrerLienDeParente (String nom, float coefficient);
 	
 	LienDeParente recupererLienDeParenteParNom (String nom);
 	

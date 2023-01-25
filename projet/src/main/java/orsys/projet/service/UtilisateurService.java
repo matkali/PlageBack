@@ -8,9 +8,9 @@ import orsys.projet.business.Utilisateur;
 
 public interface UtilisateurService {
 	
-	Concessionnaire ajouterConcessionnaire(String nom, String prenom, String email, String motDePasse, String numeroDeTelephone);
+	Concessionnaire enregistrerConcessionnaire(String nom, String prenom, String email, String motDePasse, String numeroDeTelephone);
 	
-	Locataire ajouterLocataire(String nom, String prenom, String email, String motDePasse, LocalDateTime dateHeureInscription);
+	Locataire enregistrerLocataire(String nom, String prenom, String email, String motDePasse, LocalDateTime dateHeureInscription);
 	
 	Utilisateur enregistrerUtilisateur (Utilisateur utilisateur);
 	

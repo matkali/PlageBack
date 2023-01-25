@@ -13,7 +13,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 
 @EqualsAndHashCode
-
 @Entity
 @Table(name="utilisateur")
 public abstract class Utilisateur {
@@ -36,6 +35,8 @@ public abstract class Utilisateur {
 	@NonNull
 	@Size(min=3, message="Le mot de passe doit comporter au moins trois caractères")
 	private String motDePasse;
+	
+	
 	
 	
 }
