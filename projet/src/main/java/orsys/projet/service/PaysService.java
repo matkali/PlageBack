@@ -6,7 +6,7 @@ import orsys.projet.business.Pays;
 
 public interface PaysService {
 	
-	Pays ajouterPays (String code, String nom);
+	Pays enregistrerPays (String code, String nom);
 	
 	List<Pays> recupererListePays();
 	
