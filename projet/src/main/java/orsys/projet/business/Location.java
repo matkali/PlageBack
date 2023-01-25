@@ -34,15 +34,18 @@ public class Location {
 	@Column(length=500)
 	private String remarque;
 	
+	@NonNull
 	@ManyToOne
 	private Locataire locataire;
 	
+	@NonNull
 	@ManyToOne
 	private Concessionnaire concessionnaire;
 	
 	@ManyToOne
 	private Statut statut;
 	
+	@NonNull
 	@ManyToMany(mappedBy="locations")
 	private List<Parasol> parasols;
 }

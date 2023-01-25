@@ -11,11 +11,13 @@ public interface FileService {
 	// File enregisterFile (FileDto file);
 	File enregisterFile(byte numero, double prixJournalier);
 
-	File enregisterFile(byte numero, double prixJournalier, List<Parasol> parasols);
-
 	boolean supprimerFile(Long id);
 	
 	File modifierPrixFile(Long id, double prixJournalier);
 	
 	List<File> recupererFiles();
+	
+	File recupererFile(Long id);
+	
+	List<Parasol> recupererParasolsDeFile(File file);
 }
