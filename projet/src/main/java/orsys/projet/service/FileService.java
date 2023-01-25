@@ -15,11 +15,7 @@ public interface FileService {
 
 	boolean supprimerFile(Long id);
 	
-	File ajouterParasolAFile(Parasol parasol);
-	
-	File supprimerParasolDeFile(Parasol parasol);
-	
-	File modifierPrixFile(double prixJournalier);
+	File modifierPrixFile(Long id, double prixJournalier);
 	
 	List<File> recupererFiles();
 }

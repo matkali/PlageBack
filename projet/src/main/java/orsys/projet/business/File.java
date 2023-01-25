@@ -14,6 +14,7 @@ import javax.validation.constraints.Min;
 import org.hibernate.validator.constraints.Range;
 
 import lombok.Data;
+import lombok.NonNull;
 
 @Data
 @Entity
@@ -23,9 +24,11 @@ public class File {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@NonNull
 	@Range(min=1, max=8, message="la rangée est comprise entre 1 et 8")
 	private byte numero;
 	
+	@NonNull
 	@Min(value=0, message="Le prix doit être positif")
 	private double prixJournalier;
 	
