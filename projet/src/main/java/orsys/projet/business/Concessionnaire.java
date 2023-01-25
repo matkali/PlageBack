@@ -3,10 +3,16 @@ package orsys.projet.business;
 import javax.persistence.Entity;
 import javax.validation.constraints.Pattern;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
 @Entity
 public class Concessionnaire extends Utilisateur {
 	@NonNull
