@@ -15,7 +15,9 @@ public interface UtilisateurService {
 	
 	Utilisateur enregistrerUtilisateur (Utilisateur utilisateur);
 	
-	Object recupererUtilisateur (Long idUtilisateur);
+	Utilisateur recupererUtilisateur (Long idUtilisateur);
+	
+	Utilisateur recupererUtilisateur (String email, String motDePasse);
 	
 	List<Utilisateur> recupererUtilisateursParNom (String nom);
 	
