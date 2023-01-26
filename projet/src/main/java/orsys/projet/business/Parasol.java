@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.Range;
 
 import lombok.Data;
+import lombok.NonNull;
 
 @Data
 @Entity
@@ -22,9 +23,11 @@ public class Parasol {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@NonNull
 	@Range(min=-1, max=36, message="Il y a 36 parasols par file")
 	private byte numEmplacement;
 	
+	@NonNull
 	@ManyToOne
 	private File file;
 	

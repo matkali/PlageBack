@@ -9,6 +9,7 @@ import orsys.projet.business.File;
 import orsys.projet.business.Parasol;
 import orsys.projet.dao.FileDao;
 import orsys.projet.dao.ParasolDao;
+import orsys.projet.exception.FileExistanteException;
 import orsys.projet.exception.FileInexistanteException;
 import orsys.projet.service.FileService;
 
@@ -22,12 +23,15 @@ public class FileServiceImpl implements FileService {
 
 	@Override
 	public File enregisterFile(File file) {
+		if (fileDao.existsById(file.getId())) {
+			throw new FileExistanteException();
+		}
 		return fileDao.save(file);
 	}
 
 	@Override
 	public File enregisterFile(byte numero, double prixJournalier) {
-		return fileDao.save(new File(numero, prixJournalier));
+		return enregisterFile(new File(numero, prixJournalier));
 	}
 
 	@Override
@@ -46,7 +50,8 @@ public class FileServiceImpl implements FileService {
 		if(file==null) {
 			throw new FileInexistanteException();
 		}
-		return file;
+		file.setPrixJournalier(prixJournalier);
+		return fileDao.save(file);
 	}
 
 	@Override

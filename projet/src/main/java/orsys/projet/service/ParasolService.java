@@ -16,13 +16,7 @@ public interface ParasolService {
 
 	boolean supprimerParasol(Long id);
 	
-	Parasol ajouterLocationAParasol(Location location);
-	
-	Parasol changerNumEmplacementParasol(byte numEmplacement);
-	
-	Parasol changerFileParasol(File file);
-	
-	Parasol changerPositionParasol(byte numEmplacement, File file);
+	Parasol ajouterLocationAParasol(Long id, Location location);
 	
 	List<Parasol> recupererParasol();
 }
