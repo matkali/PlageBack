@@ -4,14 +4,13 @@ import java.time.LocalDateTime;
 
 import javax.validation.constraints.PastOrPresent;
 
+import lombok.AccessLevel;
 import lombok.NonNull;
-import orsys.projet.business.Pays;
+import lombok.experimental.FieldDefaults;
 
-public class LocataireDto extends UtilisateurDto{
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class LocataireDto extends UtilisateurDto {
 	@NonNull
 	@PastOrPresent
-	private LocalDateTime dateHeureInscription;
-	
-	@NonNull
-	private Pays pays;
+	LocalDateTime dateHeureInscription;
 }

@@ -8,17 +8,11 @@ import orsys.projet.dto.UtilisateurDto;
 
 @Mapper(componentModel = "spring")
 public interface UtilisateurMapper {
-	
+
 	UtilisateurMapper INSTANCE = Mappers.getMapper(UtilisateurMapper.class);
-	
+
 	UtilisateurDto toDto(Utilisateur utilisateur);
-	
-	
-	
-	
-//	Utilisateur toEntity (UtilisateurDto utilisateurDto);
-	
-	
-	
-	
+
+//	Utilisateur toEntity(UtilisateurDto utilisateurDto);
+
 }

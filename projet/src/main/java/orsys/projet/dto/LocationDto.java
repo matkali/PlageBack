@@ -1,6 +1,7 @@
 package orsys.projet.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 
@@ -10,8 +11,6 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import orsys.projet.business.Concessionnaire;
-import orsys.projet.business.Statut;
 
 @NoArgsConstructor
 @Getter
@@ -19,17 +18,14 @@ import orsys.projet.business.Statut;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class LocationDto {
 	@NonNull
-	private LocalDateTime dateHeureDebut;
+	LocalDateTime dateHeureDebut;
 	
 	@NonNull
-	private LocalDateTime dateHeureFin;
+	LocalDateTime dateHeureFin;
 	
-	private double montantAReglerEnEuros;
+	double montantAReglerEnEuros;
 	
 	@Column(length=500)
-	private String remarque;
+	String remarque;
 	
-	private Concessionnaire concessionnaire;
-	
-	private Statut statut;
 }
