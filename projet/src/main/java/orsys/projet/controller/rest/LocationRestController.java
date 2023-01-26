@@ -22,4 +22,5 @@ public class LocationRestController {
 	public List<Location> getJours() {
 		return locationService.recupererLocation();
 	}
+	
 }

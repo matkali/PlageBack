@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import orsys.projet.business.Concessionnaire;
 import orsys.projet.business.Locataire;
@@ -16,6 +17,7 @@ import orsys.projet.exception.LocationExistanteException;
 import orsys.projet.exception.LocationInexistanteException;
 import orsys.projet.service.LocationService;
 
+@Service
 public class LocationServiceImpl implements LocationService {
 	
 	@Autowired

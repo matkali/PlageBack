@@ -10,10 +10,14 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Range;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @Entity
+@RequiredArgsConstructor
+@NoArgsConstructor
 @Table(name = "lienDeParente")
 public class LienDeParente {
 	@Id

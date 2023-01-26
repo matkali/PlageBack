@@ -21,6 +21,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 @Entity
 public class Locataire extends Utilisateur{
 	public Locataire(@NonNull @Pattern(regexp = "[a-zA-Z]+") String nom,

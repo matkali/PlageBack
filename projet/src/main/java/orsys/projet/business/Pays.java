@@ -9,10 +9,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @Entity
+@RequiredArgsConstructor
+@NoArgsConstructor
 @Table(name = "pays")
 public class Pays {
 	@Id
@@ -24,10 +28,4 @@ public class Pays {
 	
 	@OneToMany(mappedBy = "pays", fetch = FetchType.EAGER)
 	private List<Locataire> locataires;
-	
-	public Pays(String code, String nom) {
-		this.code=code;
-		this.nom=nom;
-	}
-	public Pays() {};
 }

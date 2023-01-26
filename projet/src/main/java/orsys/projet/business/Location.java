@@ -13,10 +13,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @Entity
+@RequiredArgsConstructor
+@NoArgsConstructor
 @Table(name="location")
 public class Location {
 	@Id
