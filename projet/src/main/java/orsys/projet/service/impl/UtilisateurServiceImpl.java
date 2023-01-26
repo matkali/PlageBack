@@ -66,8 +66,18 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 	}
 
 	@Override
-	public Object recupererUtilisateur(Long idUtilisateur) {
-		return utilisateurDao.findById(idUtilisateur);
+	public Utilisateur recupererUtilisateur(Long idUtilisateur) {
+		Utilisateur utilisateur = utilisateurDao.findById(idUtilisateur).orElse(null);
+		if(utilisateur==null) {
+			throw new UtilisateurInexistantException("Cet utilisateur n'est pas créé en base");
+		}else {
+			return utilisateur;
+		}
+	}
+	
+	@Override
+	public Utilisateur recupererUtilisateur(String email, String motDePasse) {
+		return utilisateurDao.findLastByEmailAndMotDePasse(email, motDePasse);
 	}
 
 	@Override
