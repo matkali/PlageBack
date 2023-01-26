@@ -24,6 +24,7 @@ public class LienDeParente {
 	@Pattern(regexp = "[a-zA-Z]+")
 	private String nom;
 	
+	@NonNull
 	@Range(min = 0, max = 1)
 	private float coefficient;
 

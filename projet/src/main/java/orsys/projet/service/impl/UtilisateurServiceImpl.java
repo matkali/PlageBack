@@ -14,6 +14,8 @@ import orsys.projet.dao.LocataireDao;
 import orsys.projet.dao.PaysDao;
 import orsys.projet.dao.UtilisateurDao;
 import orsys.projet.exception.ConcessionnaireExistantException;
+import orsys.projet.exception.LocataireExiststantException;
+import orsys.projet.exception.UtilisateurInexistantException;
 import orsys.projet.service.UtilisateurService;
 
 @Service
@@ -52,7 +54,7 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 	@Override
 	public Locataire enregistrerLocataire(String nom, String prenom, String email, String motDePasse, String lienDeParente, String pays) {
 		if (utilisateurDao.findByEmail(email)!=null) {
-			return (Locataire) utilisateurDao.findByEmail(email);
+			throw new LocataireExiststantException("Ce locataire existe déjà en base");
 		} else {
 		return locataireDao.save(new Locataire(nom, prenom, email, motDePasse,lienDeParenteDao.findByNom(lienDeParente), paysDao.findByNom(pays)));
 		}
@@ -84,32 +86,57 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 	}
 
 	@Override
-	public Utilisateur mettreAJourNom(String nomOld, String nomNew) {
-		return null;
+	public Utilisateur mettreAJourNom(Long id, String nomNew) {
+		Utilisateur utilisateur = utilisateurDao.findById(id).orElse(null);
+		if(utilisateur==null) {
+			throw new UtilisateurInexistantException("Utilisateur non présent en base");
+		} else {
+			utilisateur.setNom(nomNew);
+			return utilisateurDao.save(utilisateur);
+		}
 	}
 
 	@Override
-	public Utilisateur mettreAJourPrenom(String prenom) {
-		// TODO Auto-generated method stub
-		return null;
+	public Utilisateur mettreAJourPrenom(Long id, String prenomNew) {
+		Utilisateur utilisateur = utilisateurDao.findById(id).orElse(null);
+		if(utilisateur==null) {
+			throw new UtilisateurInexistantException("Utilisateur non présent en base");
+		} else {
+			utilisateur.setNom(prenomNew);
+			return utilisateurDao.save(utilisateur);
+		}
 	}
 
 	@Override
-	public Utilisateur mettreAJourEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+	public Utilisateur mettreAJourEmail(Long id, String emailNew) {
+		Utilisateur utilisateur = utilisateurDao.findById(id).orElse(null);
+		if(utilisateur==null) {
+			throw new UtilisateurInexistantException("Utilisateur non présent en base");
+		} else {
+			utilisateur.setNom(emailNew);
+			return utilisateurDao.save(utilisateur);
+		}
 	}
 
 	@Override
-	public Concessionnaire mettreAJourConcessionnaireNumeroDeTelephone(String numeroDeTelephone) {
-		// TODO Auto-generated method stub
-		return null;
+	public Concessionnaire mettreAJourConcessionnaireNumeroDeTelephone(Long id, String numeroDeTelephoneNew) {
+		Concessionnaire concessionnaire = concessionnaireDao.findById(id).orElse(null);
+		if(concessionnaire==null) {
+			throw new UtilisateurInexistantException("Utilisateur non présent en base");
+		} else {
+			concessionnaire.setNom(numeroDeTelephoneNew);
+			return utilisateurDao.save(concessionnaire);
+		}
 	}
 
 	@Override
 	public boolean supprimerUtilisateur(Long id) {
-		// TODO Auto-generated method stub
-		return false;
+		if (utilisateurDao.existsById(id)) {
+			throw new UtilisateurInexistantException("Cet Utilisateur n'existe pas en base");
+		} else {
+			utilisateurDao.deleteById(id);
+			return true;
+		}
 	}
 	
 	

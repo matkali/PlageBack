@@ -14,9 +14,9 @@ public interface PaysService {
 	
 	Pays recupererPaysParNom (String nom);
 	
-	Pays mettreAJourNomPays (String nom);
+	Pays mettreAJourNomPays (String nomOld, String nomNew);
 	
-	Pays mettreAJourCodePays (String code);
+	Pays mettreAJourCodePays (String codeOld, String codeNew);
  	
 	boolean supprimerPaysParCode (String code);
 	
