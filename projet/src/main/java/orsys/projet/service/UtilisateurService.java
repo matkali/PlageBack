@@ -1,6 +1,7 @@
 package orsys.projet.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import orsys.projet.business.Concessionnaire;
 import orsys.projet.business.Locataire;
@@ -10,19 +11,19 @@ public interface UtilisateurService {
 	
 	Concessionnaire enregistrerConcessionnaire(String nom, String prenom, String email, String motDePasse, String numeroDeTelephone);
 	
-	Locataire enregistrerLocataire(String nom, String prenom, String email, String motDePasse, LocalDateTime dateHeureInscription);
+	Locataire enregistrerLocataire(String nom, String prenom, String email, String motDePasse, String lienDeParente, String pays);
 	
 	Utilisateur enregistrerUtilisateur (Utilisateur utilisateur);
 	
-	Utilisateur recupererUtilisateur (Long idUtilisateur);
+	Object recupererUtilisateur (Long idUtilisateur);
 	
-	Utilisateur recupererUtilisateurParNom (String nom);
+	List<Utilisateur> recupererUtilisateursParNom (String nom);
 	
-	Utilisateur recupererUtilisateurParPrenom (String prenom);
+	List<Utilisateur> recupererUtilisateursParPrenom (String prenom);
 	
 	Utilisateur recupererUtilisateurParEmail (String email);
 	
-	Utilisateur mettreAJourNom (String nom);
+	Utilisateur mettreAJourNom (String nomOld, String nomNew);
 	
 	Utilisateur mettreAJourPrenom (String prenom);
 	

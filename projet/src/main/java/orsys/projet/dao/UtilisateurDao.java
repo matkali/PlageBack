@@ -1,13 +1,15 @@
 package orsys.projet.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import orsys.projet.business.Utilisateur;
 
 public interface UtilisateurDao extends JpaRepository<Utilisateur, Long> {
-	Utilisateur findByNom(String nom);
+	List<Utilisateur> findByNom(String nom);
 	
-	Utilisateur findByPrenom(String prenom);
+	List<Utilisateur> findByPrenom(String prenom);
 	
 	Utilisateur findByEmail(String email);
 	

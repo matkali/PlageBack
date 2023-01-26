@@ -10,31 +10,45 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 
+@Getter
+@Setter
 @EqualsAndHashCode
 @Entity
 @Table(name="utilisateur")
 public abstract class Utilisateur {
+	public Utilisateur(@NonNull @Pattern(regexp = "[a-zA-Z]+") String nom,
+			@NonNull @Pattern(regexp = "[a-zA-Z]+") String prenom, @NonNull @Email String email,
+			@NonNull @Size(min = 3, message = "Le mot de passe doit comporter au moins trois caractères") String motDePasse) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.motDePasse = motDePasse;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	protected Long id;
 	
 	@NonNull
 	@Pattern(regexp = "[a-zA-Z]+")
-	private String nom;
+	protected String nom;
 	
 	@NonNull
 	@Pattern(regexp = "[a-zA-Z]+")
-	private String prenom;
+	protected String prenom;
 	
 	@NonNull
 	@Email
-	private String email;
+	protected String email;
 	
 	@NonNull
 	@Size(min=3, message="Le mot de passe doit comporter au moins trois caractères")
-	private String motDePasse;
+	protected String motDePasse;
 	
 	
 	
