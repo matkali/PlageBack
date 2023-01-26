@@ -1,7 +1,7 @@
 package orsys.projet.initialisation;
 
+import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -17,9 +17,13 @@ import com.github.javafaker.service.RandomService;
 
 import lombok.AllArgsConstructor;
 import orsys.projet.business.Concessionnaire;
+import orsys.projet.business.File;
 import orsys.projet.business.LienDeParente;
 import orsys.projet.business.Locataire;
+import orsys.projet.business.Location;
+import orsys.projet.business.Parasol;
 import orsys.projet.business.Pays;
+import orsys.projet.business.Statut;
 import orsys.projet.dao.ConcessionnaireDao;
 import orsys.projet.dao.FileDao;
 import orsys.projet.dao.LienDeParenteDao;
@@ -29,6 +33,8 @@ import orsys.projet.dao.ParasolDao;
 import orsys.projet.dao.PaysDao;
 import orsys.projet.dao.StatutDao;
 import orsys.projet.dao.UtilisateurDao;
+import orsys.projet.service.FileService;
+import orsys.projet.service.impl.FileServiceImpl;
 
 @Component
 @AllArgsConstructor
@@ -43,6 +49,8 @@ public class AjoutDonneesInitiales implements CommandLineRunner{
 	private final ConcessionnaireDao concessionnaireDao;
 	private final StatutDao statutDao;
 	
+	private final FileService fileService = new FileServiceImpl();
+	
 	private static Random random = new Random();
 	private static FakeValuesService fakeValuesService = new FakeValuesService(new Locale("fr-FR"),
 			new RandomService());
@@ -56,8 +64,55 @@ public class AjoutDonneesInitiales implements CommandLineRunner{
 		ajouterPays();
 		ajouterLocataire();
 		ajouterConcessionnaire();
+		ajouterFile();
+		ajouterParasol();
+		ajouterStatut();
+		ajouterLocation();
 		Date dateHeureFin = new Date();
 		System.out.println("Données initiales ajoutées en "+ String.valueOf(dateHeureFin.getTime() - dateHeureDebut.getTime() + " ms"));
+	}
+
+	private void ajouterLocation() {
+		Random rand = new Random();
+		List<File> listFile = fileDao.findAll();
+//		List<Parasol> parasols = fileService.recupererParasolsDeFile(listFile.get(rand.nextInt(listFile.size())));
+		List<Parasol> parasols = parasolDao.findAll();
+		
+		LocalDateTime dateHeureDebut = LocalDateTime.now();
+		LocalDateTime dateHeureFin = dateHeureDebut.plusDays(2);
+		List<Locataire> listLocataires = locataireDao.findAll();
+		Concessionnaire concessionnaire = concessionnaireDao.findAll().get(0);
+		locationDao.save(new Location(dateHeureDebut, dateHeureFin, listLocataires.get(rand.nextInt(listLocataires.size())), concessionnaire, parasols));
+		
+	}
+
+	private void ajouterStatut() {
+		statutDao.save(new Statut("En attente"));
+		statutDao.save(new Statut("Refusée"));
+		statutDao.save(new Statut("Acceptée"));
+		statutDao.save(new Statut("Payée"));
+		
+	}
+
+	private void ajouterParasol() {
+		if(parasolDao.count()==0) {
+			List<File> listFile = fileDao.findAll();
+			for(File file : listFile) {
+				parasolDao.save(new Parasol((byte)-1, file));
+				for(int i=0; i<10; i++) {
+					parasolDao.save(new Parasol((byte)(i+1), file));
+				}
+			}
+		}
+		
+	}
+
+	private void ajouterFile() {
+		if(fileDao.count()==0) {
+			for(int i=0; i<8;i++) {
+				fileDao.save(new File((byte) (i+1),(double) 25-i));
+			}
+		}
 	}
 
 	private void ajouterConcessionnaire() {

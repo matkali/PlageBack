@@ -31,7 +31,7 @@ public class Parasol {
 	@ManyToOne
 	private File file;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="parasols")
 	private List<Location> locations;
 	
 	

@@ -46,6 +46,6 @@ public class Location {
 	private Statut statut;
 	
 	@NonNull
-	@ManyToMany(mappedBy="locations")
+	@ManyToMany
 	private List<Parasol> parasols;
 }
