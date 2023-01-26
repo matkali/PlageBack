@@ -12,9 +12,9 @@ public interface LienDeParenteService {
 	
 	List<LienDeParente> recupererLienDeParenteParCoefficient (float coefficient);
 	
-	LienDeParente mettreAJourLienDeParenteNom (String nom);
+	LienDeParente mettreAJourLienDeParenteNom (String nomOld, String nomNew);
 	
-	LienDeParente mettreAJourLienDeParenteCoefficient(float coefficient);
+	LienDeParente mettreAJourLienDeParenteCoefficient(String nom, float coefficient);
 	
 	boolean supprimerLienDeParenteParNom (String nom);
 	

@@ -23,13 +23,13 @@ public interface UtilisateurService {
 	
 	Utilisateur recupererUtilisateurParEmail (String email);
 	
-	Utilisateur mettreAJourNom (String nomOld, String nomNew);
+	Utilisateur mettreAJourNom (Long id, String nomNew);
 	
-	Utilisateur mettreAJourPrenom (String prenom);
+	Utilisateur mettreAJourPrenom (Long id, String prenomNew);
 	
-	Utilisateur mettreAJourEmail (String email);
+	Utilisateur mettreAJourEmail (Long id, String emailNew);
 	
-	Concessionnaire mettreAJourConcessionnaireNumeroDeTelephone (String numeroDeTelephone);
+	Concessionnaire mettreAJourConcessionnaireNumeroDeTelephone (Long id, String numeroDeTelephoneNew);
 	
 	boolean supprimerUtilisateur (Long id);
 	
