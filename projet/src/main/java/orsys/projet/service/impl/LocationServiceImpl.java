@@ -12,6 +12,7 @@ import orsys.projet.business.Parasol;
 import orsys.projet.business.Statut;
 import orsys.projet.dao.LocationDao;
 import orsys.projet.dto.LocationDto;
+import orsys.projet.exception.LocationExistanteException;
 import orsys.projet.exception.LocationInexistanteException;
 import orsys.projet.service.LocationService;
 
@@ -22,6 +23,9 @@ public class LocationServiceImpl implements LocationService {
 
 	@Override
 	public Location enregisterLocation(Location location) {
+		if (locationDao.existsById(location.getId())) {
+			throw new LocationExistanteException();
+		}
 		return locationDao.save(location);
 	}
 
@@ -34,7 +38,7 @@ public class LocationServiceImpl implements LocationService {
 	@Override
 	public Location enregisterLocation(LocalDateTime dateHeureDebut, LocalDateTime dateHeureFin, List<Parasol> parasols,
 			Locataire locataire, Concessionnaire concessionnaire) {
-		return locationDao.save(new Location(dateHeureDebut, dateHeureFin, locataire, concessionnaire, parasols));
+		return enregisterLocation(new Location(dateHeureDebut, dateHeureFin, locataire, concessionnaire, parasols));
 	}
 
 	@Override
@@ -42,7 +46,7 @@ public class LocationServiceImpl implements LocationService {
 			Locataire locataire, Concessionnaire concessionnaire, String remarque) {
 		Location location=new Location(dateHeureDebut, dateHeureFin, locataire, concessionnaire, parasols);
 		location.setRemarque(remarque);
-		return locationDao.save(location);
+		return enregisterLocation(location);
 	}
 
 	@Override
