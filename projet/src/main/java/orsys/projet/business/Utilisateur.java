@@ -20,8 +20,8 @@ import lombok.Setter;
 @Entity
 @Table(name="utilisateur")
 public abstract class Utilisateur {
-	public Utilisateur(@NonNull @Pattern(regexp = "[a-zA-Z]+") String nom,
-			@NonNull @Pattern(regexp = "[a-zA-Z]+") String prenom, @NonNull @Email String email,
+	public Utilisateur(@NonNull String nom,
+			@NonNull String prenom, @NonNull @Email String email,
 			@NonNull @Size(min = 3, message = "Le mot de passe doit comporter au moins trois caractères") String motDePasse) {
 		super();
 		this.nom = nom;
@@ -35,11 +35,9 @@ public abstract class Utilisateur {
 	protected Long id;
 	
 	@NonNull
-	@Pattern(regexp = "[a-zA-Z]+")
 	protected String nom;
 	
 	@NonNull
-	@Pattern(regexp = "[a-zA-Z]+")
 	protected String prenom;
 	
 	@NonNull

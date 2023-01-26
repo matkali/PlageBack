@@ -25,4 +25,9 @@ public class Pays {
 	@OneToMany(mappedBy = "pays", fetch = FetchType.EAGER)
 	private List<Locataire> locataires;
 	
+	public Pays(String code, String nom) {
+		this.code=code;
+		this.nom=nom;
+	}
+	public Pays() {};
 }
