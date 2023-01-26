@@ -94,4 +94,14 @@ public class LocationServiceImpl implements LocationService {
 		return locationDao.save(location);
 	}
 
+	@Override
+	public List<Location> recupererLocation() {
+		return locationDao.findAll();
+	}
+
+	@Override
+	public List<Location> recupererLocationParClient(Locataire locataire) {
+		return locationDao.findLocationByLocataire(locataire);
+	}
+
 }

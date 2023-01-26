@@ -1,5 +1,6 @@
 package orsys.projet.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,13 +14,14 @@ import orsys.projet.dao.ParasolDao;
 import orsys.projet.dto.ParasolDto;
 import orsys.projet.exception.ParasolExistantException;
 import orsys.projet.exception.ParasolInexistantException;
+import orsys.projet.exception.ParasolReserveException;
 import orsys.projet.service.ParasolService;
 
 public class ParasolServiceImpl implements ParasolService {
 
 	@Autowired
 	private ParasolDao parasolDao;
-	@Autowired 
+	@Autowired
 	private LocationDao locationDao;
 
 	@Override
@@ -38,7 +40,7 @@ public class ParasolServiceImpl implements ParasolService {
 
 	@Override
 	public Parasol enregisterParasol(byte numEmplacement, File file) {
-		return enregisterParasol(new Parasol(numEmplacement,file));
+		return enregisterParasol(new Parasol(numEmplacement, file));
 	}
 
 	@Override
@@ -53,13 +55,24 @@ public class ParasolServiceImpl implements ParasolService {
 
 	@Override
 	public Parasol ajouterLocationAParasol(Long id, Location location) {
-		Parasol parasol=parasolDao.findById(id).orElse(null);
-		if(parasol==null) {
+		Parasol parasol = parasolDao.findById(id).orElse(null);
+		if (parasol == null) {
 			throw new ParasolInexistantException();
 		} else {
 			List<Location> locations = parasol.getLocations();
-			if (parasol.getLocations()==null) {
+			if (parasol.getLocations() == null) {
 				locations = new ArrayList<>();
+			}
+			if (parasol.getNumEmplacement() > 0) {
+				LocalDateTime deb = location.getDateHeureDebut();
+				LocalDateTime fin = location.getDateHeureFin();
+				for (Location loc : locations) {
+					LocalDateTime debloc = loc.getDateHeureDebut();
+					LocalDateTime finloc = loc.getDateHeureFin();
+					if (!(deb.isAfter(finloc) || fin.isBefore(debloc))) {
+						throw new ParasolReserveException();
+					}
+				}
 			}
 			locations.add(location);
 			parasol.setLocations(locations);
