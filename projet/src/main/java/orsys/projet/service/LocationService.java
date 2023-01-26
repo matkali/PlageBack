@@ -30,4 +30,8 @@ public interface LocationService {
 	Location changerParasolsLocation(Long id, List<Parasol> parasols);
 
 	Location changerMontantLocation(Long id, double montant);
+	
+	List<Location> recupererLocation();
+	
+	List<Location> recupererLocationParClient(Locataire locataire);
 }
