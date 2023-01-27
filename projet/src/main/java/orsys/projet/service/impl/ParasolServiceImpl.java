@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import orsys.projet.business.File;
 import orsys.projet.business.Location;
@@ -17,6 +18,7 @@ import orsys.projet.exception.ParasolInexistantException;
 import orsys.projet.exception.ParasolReserveException;
 import orsys.projet.service.ParasolService;
 
+@Service
 public class ParasolServiceImpl implements ParasolService {
 
 	@Autowired
