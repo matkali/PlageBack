@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.aspectj.weaver.NewConstructorTypeMunger;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,7 +54,14 @@ public class ProjetController {
 			return mav;
 		} else {
 			httpSession.setAttribute("utilisateurs", utilisateur);
-			return null;
+			ModelAndView mav = new ModelAndView("redirect:projet");
+			return mav;
 		}
+	}
+	
+	@GetMapping("/projet")
+	public ModelAndView projet() {
+		ModelAndView mav = new ModelAndView("projet");
+		return mav;
 	}
 }
