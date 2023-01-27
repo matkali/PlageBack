@@ -3,6 +3,7 @@ package orsys.projet.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import orsys.projet.business.Statut;
 import orsys.projet.dao.StatutDao;
@@ -10,6 +11,7 @@ import orsys.projet.exception.FileInexistanteException;
 import orsys.projet.exception.StatutExistantException;
 import orsys.projet.service.StatutService;
 
+@Service
 public class StatutServiceImpl implements StatutService {
 
 	@Autowired
@@ -51,6 +53,16 @@ public class StatutServiceImpl implements StatutService {
 	@Override
 	public List<Statut> recupererStatuts() {
 		return statutDao.findAll();
+	}
+
+	@Override
+	public List<Statut> recupererStatutsParDebutNom(String nom) {
+		return statutDao.findAllByNomStartingWith(nom);
+	}
+
+	@Override
+	public Statut recupererStatutParNom(String nom) {
+		return statutDao.findByNom(nom);
 	}
 
 }

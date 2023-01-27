@@ -53,7 +53,7 @@ public class ProjetController {
 			return mav;
 		} else {
 			httpSession.setAttribute("utilisateurs", utilisateur);
-			return mav;
+			return null;
 		}
 	}
 }

@@ -39,14 +39,14 @@ public class LocationServiceImpl implements LocationService {
 
 	@Override
 	public Location enregisterLocation(LocalDateTime dateHeureDebut, LocalDateTime dateHeureFin, List<Parasol> parasols,
-			Locataire locataire, Concessionnaire concessionnaire) {
-		return enregisterLocation(new Location(dateHeureDebut, dateHeureFin, locataire, concessionnaire, parasols));
+			Locataire locataire, Statut statut, Concessionnaire concessionnaire) {
+		return enregisterLocation(new Location(dateHeureDebut, dateHeureFin, locataire, concessionnaire,statut, parasols));
 	}
 
 	@Override
 	public Location enregisterLocation(LocalDateTime dateHeureDebut, LocalDateTime dateHeureFin, List<Parasol> parasols,
-			Locataire locataire, Concessionnaire concessionnaire, String remarque) {
-		Location location=new Location(dateHeureDebut, dateHeureFin, locataire, concessionnaire, parasols);
+			Locataire locataire, Statut statut, Concessionnaire concessionnaire, String remarque) {
+		Location location=new Location(dateHeureDebut, dateHeureFin, locataire, concessionnaire, statut, parasols);
 		location.setRemarque(remarque);
 		return enregisterLocation(location);
 	}
@@ -104,6 +104,11 @@ public class LocationServiceImpl implements LocationService {
 	@Override
 	public List<Location> recupererLocationParClient(Locataire locataire) {
 		return locationDao.findLocationByLocataire(locataire);
+	}
+
+	@Override
+	public Location recupererLocationParId(Long id) {
+		return locationDao.findById(id).orElse(null);
 	}
 
 }

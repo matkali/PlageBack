@@ -14,4 +14,8 @@ public interface StatutService {
 	Statut modifierStatut(Long id, String nom);
 	
 	List<Statut> recupererStatuts();
+	
+	List<Statut> recupererStatutsParDebutNom(String nom);
+	
+	Statut recupererStatutParNom(String nom);
 }
