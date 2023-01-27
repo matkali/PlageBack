@@ -18,8 +18,8 @@ public class LocationRestController {
 
 	private final LocationService locationService;
 	
-	@GetMapping(value="locations", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Location> getJours() {
+	@GetMapping(value="locations")
+	public List<Location> getLocation() {
 		return locationService.recupererLocation();
 	}
 	

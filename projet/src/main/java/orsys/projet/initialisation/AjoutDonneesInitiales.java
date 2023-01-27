@@ -100,7 +100,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner{
 			for(File file : listFile) {
 				parasolDao.save(new Parasol((byte)-1, file));
 				for(int i=0; i<10; i++) {
-					parasolDao.save(new Parasol((byte)(i+1), file));
+					parasolDao.save(new Parasol((byte)(i), file));
 				}
 			}
 		}
