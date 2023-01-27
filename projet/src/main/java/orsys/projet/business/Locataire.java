@@ -12,6 +12,8 @@ import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -45,6 +47,7 @@ public class Locataire extends Utilisateur{
 	@NonNull
 	private Pays pays;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "locataire", fetch = FetchType.EAGER)
 	private List<Location> locations;
 	
