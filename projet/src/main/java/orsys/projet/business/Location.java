@@ -19,8 +19,8 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @Entity
-@RequiredArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Table(name="location")
 public class Location {
 	@Id
@@ -46,6 +46,7 @@ public class Location {
 	@ManyToOne
 	private Concessionnaire concessionnaire;
 	
+	@NonNull
 	@ManyToOne
 	private Statut statut;
 	

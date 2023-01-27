@@ -16,12 +16,14 @@ public interface LocationService {
 	Location enregisterLocation(LocationDto location);
 
 	Location enregisterLocation(LocalDateTime dateHeureDebut, LocalDateTime dateHeureFin, List<Parasol> parasols,
-			Locataire locataire, Concessionnaire concessionnaire);
+			Locataire locataire,Statut statut, Concessionnaire concessionnaire);
 
 	Location enregisterLocation(LocalDateTime dateHeureDebut, LocalDateTime dateHeureFin, List<Parasol> parasols,
-			Locataire locataire, Concessionnaire concessionnaire, String remarque);
+			Locataire locataire, Statut statut, Concessionnaire concessionnaire, String remarque);
 
 	boolean supprimerLocation(Long id);
+	
+	Location recupererLocationParId(Long id);
 
 	List<Location> recupererLocationParStatut(Statut statut);
 

@@ -17,7 +17,6 @@ import orsys.projet.exception.ParasolExistantException;
 import orsys.projet.exception.ParasolInexistantException;
 import orsys.projet.exception.ParasolReserveException;
 import orsys.projet.service.ParasolService;
-
 @Service
 public class ParasolServiceImpl implements ParasolService {
 

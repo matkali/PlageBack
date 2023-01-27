@@ -55,4 +55,14 @@ public class StatutServiceImpl implements StatutService {
 		return statutDao.findAll();
 	}
 
+	@Override
+	public List<Statut> recupererStatutsParDebutNom(String nom) {
+		return statutDao.findAllByNomStartingWith(nom);
+	}
+
+	@Override
+	public Statut recupererStatutParNom(String nom) {
+		return statutDao.findByNom(nom);
+	}
+
 }

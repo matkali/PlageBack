@@ -77,12 +77,12 @@ public class AjoutDonneesInitiales implements CommandLineRunner{
 		List<File> listFile = fileDao.findAll();
 //		List<Parasol> parasols = fileService.recupererParasolsDeFile(listFile.get(rand.nextInt(listFile.size())));
 		List<Parasol> parasols = parasolDao.findAll();
-		
+		Statut statut = statutDao.findByNom("En attente");
 		LocalDateTime dateHeureDebut = LocalDateTime.now();
 		LocalDateTime dateHeureFin = dateHeureDebut.plusDays(2);
 		List<Locataire> listLocataires = locataireDao.findAll();
 		Concessionnaire concessionnaire = concessionnaireDao.findAll().get(0);
-		locationDao.save(new Location(dateHeureDebut, dateHeureFin, listLocataires.get(rand.nextInt(listLocataires.size())), concessionnaire, parasols));
+		locationDao.save(new Location(dateHeureDebut, dateHeureFin, listLocataires.get(rand.nextInt(listLocataires.size())), concessionnaire, statut, parasols));
 		
 	}
 
