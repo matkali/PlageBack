@@ -1,16 +1,22 @@
 package orsys.projet.service.impl;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.emory.mathcs.backport.java.util.Collections;
 import orsys.projet.business.File;
 import orsys.projet.business.Parasol;
 import orsys.projet.dao.FileDao;
 import orsys.projet.dao.ParasolDao;
+import orsys.projet.dto.FileDto;
 import orsys.projet.exception.FileExistanteException;
 import orsys.projet.exception.FileInexistanteException;
+import orsys.projet.mapper.FileMapper;
+import orsys.projet.mapper.impl.FileMapperImpl;
 import orsys.projet.service.FileService;
 
 @Service
@@ -72,6 +78,19 @@ public class FileServiceImpl implements FileService {
 	@Override
 	public List<Parasol> recupererParasolsDeFile(File file) {
 		return parasolDao.findByFile(file);
+	}
+
+	@Override
+	public List<FileDto> recupererFilesInfo(LocalDate dateDeb, LocalDate dateFin) {
+		FileMapper fileMapper = new FileMapperImpl()
+;		List<File> files = fileDao.findAll();
+		List<FileDto> fileDtos = new ArrayList<>();
+		for(File file:files) {
+			fileDtos.add(fileMapper.toDto(file, dateDeb, dateFin));
+		}
+		Collections.sort(fileDtos, (a, b) -> ((FileDto) a).getNumero() < ((FileDto) b).getNumero() ? -1
+				: ((FileDto) a).getNumero() == ((FileDto) b).getNumero() ? 0 : 1);
+		return fileDtos;
 	}
 
 }

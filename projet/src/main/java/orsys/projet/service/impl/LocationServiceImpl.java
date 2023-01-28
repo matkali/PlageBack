@@ -1,6 +1,6 @@
 package orsys.projet.service.impl;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,15 +38,15 @@ public class LocationServiceImpl implements LocationService {
 	}
 
 	@Override
-	public Location enregisterLocation(LocalDateTime dateHeureDebut, LocalDateTime dateHeureFin, List<Parasol> parasols,
+	public Location enregisterLocation(LocalDate dateDebut, LocalDate dateFin, List<Parasol> parasols,
 			Locataire locataire, Statut statut, Concessionnaire concessionnaire) {
-		return enregisterLocation(new Location(dateHeureDebut, dateHeureFin, locataire, concessionnaire,statut, parasols));
+		return enregisterLocation(new Location(dateDebut, dateFin, locataire, concessionnaire,statut, parasols));
 	}
 
 	@Override
-	public Location enregisterLocation(LocalDateTime dateHeureDebut, LocalDateTime dateHeureFin, List<Parasol> parasols,
+	public Location enregisterLocation(LocalDate dateDebut, LocalDate dateFin, List<Parasol> parasols,
 			Locataire locataire, Statut statut, Concessionnaire concessionnaire, String remarque) {
-		Location location=new Location(dateHeureDebut, dateHeureFin, locataire, concessionnaire, statut, parasols);
+		Location location=new Location(dateDebut, dateFin, locataire, concessionnaire, statut, parasols);
 		location.setRemarque(remarque);
 		return enregisterLocation(location);
 	}

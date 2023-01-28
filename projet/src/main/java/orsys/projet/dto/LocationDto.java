@@ -1,7 +1,6 @@
 package orsys.projet.dto;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 
@@ -18,10 +17,10 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class LocationDto {
 	@NonNull
-	LocalDateTime dateHeureDebut;
+	LocalDate dateDebut;
 	
 	@NonNull
-	LocalDateTime dateHeureFin;
+	LocalDate dateFin;
 	
 	double montantAReglerEnEuros;
 	

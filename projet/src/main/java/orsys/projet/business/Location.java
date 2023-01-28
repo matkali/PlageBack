@@ -1,6 +1,6 @@
 package orsys.projet.business;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -28,10 +28,10 @@ public class Location {
 	private Long id;
 	
 	@NonNull
-	private LocalDateTime dateHeureDebut;
+	private LocalDate dateDebut;
 	
 	@NonNull
-	private LocalDateTime dateHeureFin;
+	private LocalDate dateFin;
 	
 	private double montantAReglerEnEuros;
 	

@@ -1,6 +1,6 @@
 package orsys.projet.service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import orsys.projet.business.Concessionnaire;
@@ -15,10 +15,10 @@ public interface LocationService {
 
 	Location enregisterLocation(LocationDto location);
 
-	Location enregisterLocation(LocalDateTime dateHeureDebut, LocalDateTime dateHeureFin, List<Parasol> parasols,
+	Location enregisterLocation(LocalDate dateDebut, LocalDate dateFin, List<Parasol> parasols,
 			Locataire locataire,Statut statut, Concessionnaire concessionnaire);
 
-	Location enregisterLocation(LocalDateTime dateHeureDebut, LocalDateTime dateHeureFin, List<Parasol> parasols,
+	Location enregisterLocation(LocalDate dateDebut, LocalDate dateFin, List<Parasol> parasols,
 			Locataire locataire, Statut statut, Concessionnaire concessionnaire, String remarque);
 
 	boolean supprimerLocation(Long id);

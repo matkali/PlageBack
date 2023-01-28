@@ -1,6 +1,6 @@
 package orsys.projet.service.impl;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,11 +65,11 @@ public class ParasolServiceImpl implements ParasolService {
 				locations = new ArrayList<>();
 			}
 			if (parasol.getNumEmplacement() > 0) {
-				LocalDateTime deb = location.getDateHeureDebut();
-				LocalDateTime fin = location.getDateHeureFin();
+				LocalDate deb = location.getDateDebut();
+				LocalDate fin = location.getDateFin();
 				for (Location loc : locations) {
-					LocalDateTime debloc = loc.getDateHeureDebut();
-					LocalDateTime finloc = loc.getDateHeureFin();
+					LocalDate debloc = loc.getDateDebut();
+					LocalDate finloc = loc.getDateFin();
 					if (!(deb.isAfter(finloc) || fin.isBefore(debloc))) {
 						throw new ParasolReserveException();
 					}

@@ -1,9 +1,11 @@
 package orsys.projet.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import orsys.projet.business.File;
 import orsys.projet.business.Parasol;
+import orsys.projet.dto.FileDto;
 
 public interface FileService {
 	File enregisterFile(File file);
@@ -20,4 +22,6 @@ public interface FileService {
 	File recupererFile(Long id);
 	
 	List<Parasol> recupererParasolsDeFile(File file);
+	
+	List<FileDto> recupererFilesInfo(LocalDate dateDeb, LocalDate dateFin);
 }

@@ -1,6 +1,6 @@
 package orsys.projet.initialisation;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -78,11 +78,11 @@ public class AjoutDonneesInitiales implements CommandLineRunner{
 //		List<Parasol> parasols = fileService.recupererParasolsDeFile(listFile.get(rand.nextInt(listFile.size())));
 		List<Parasol> parasols = parasolDao.findAll();
 		Statut statut = statutDao.findByNom("En attente");
-		LocalDateTime dateHeureDebut = LocalDateTime.now();
-		LocalDateTime dateHeureFin = dateHeureDebut.plusDays(2);
+		LocalDate dateDebut = LocalDate.now();
+		LocalDate dateFin = dateDebut.plusDays(2);
 		List<Locataire> listLocataires = locataireDao.findAll();
 		Concessionnaire concessionnaire = concessionnaireDao.findAll().get(0);
-		locationDao.save(new Location(dateHeureDebut, dateHeureFin, listLocataires.get(rand.nextInt(listLocataires.size())), concessionnaire, statut, parasols));
+		locationDao.save(new Location(dateDebut, dateFin, listLocataires.get(rand.nextInt(listLocataires.size())), concessionnaire, statut, parasols));
 		
 	}
 
