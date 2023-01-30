@@ -17,7 +17,6 @@ import orsys.projet.business.Utilisateur;
 import orsys.projet.dto.UtilisateurDto;
 import orsys.projet.service.UtilisateurService;
 
-
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api")
@@ -27,17 +26,18 @@ public class UtilisateurRestController {
 	private final UtilisateurService utilisateurService;
 	
 	@GetMapping("utilisateurs/{email}/{motDePasse}")
-	public ResponseEntity<Utilisateur> utilisateurGet(@PathVariable String email, @PathVariable String motDePasse){
+	public ResponseEntity<Utilisateur> utilisateurGet(@PathVariable String email, @PathVariable String motDePasse) {
 		Utilisateur utilisateur = utilisateurService.recupererUtilisateur(email, motDePasse);
-		if(utilisateur==null) {
+		if (utilisateur == null) {
 			return ResponseEntity.badRequest().body(null);
 		}
 		return ResponseEntity.ok(utilisateur);
 	}
-	
+
 	@PostMapping("utilisateurs/connexion/{email}/{motDePasse}")
 	@ResponseStatus(value = HttpStatus.OK)
-	public ResponseEntity<UtilisateurDto> utilisateurConnexion(@PathVariable String email, @PathVariable String motDePasse){
+	public ResponseEntity<UtilisateurDto> utilisateurConnexion(@PathVariable String email,
+			@PathVariable String motDePasse) {
 		Utilisateur utilisateur = utilisateurService.recupererUtilisateur(email, motDePasse);
 		if (utilisateur == null) {
 			return ResponseEntity.badRequest().body(null);

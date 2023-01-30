@@ -151,8 +151,8 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 
 	@Override
 	public String recupererConcessionnaireouLocataire(String email, String motDePasse) {
-		List<Concessionnaire> concessionnaires = concessionnaireDao.findAll();
-		List<Locataire> locataires = locataireDao.findAll();
+		List<Concessionnaire> concessionnaires = recupererConcessionnaires();
+		List<Locataire> locataires = recupererLocataires();
 		Utilisateur utilisateur = recupererUtilisateur(email, motDePasse);
 		if(concessionnaires.contains(utilisateur)){
 			return "concessionnaire";
@@ -160,6 +160,16 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 			return "locataire";
 		}
 		return null;
+	}
+
+	@Override
+	public List<Locataire> recupererLocataires() {
+		return locataireDao.findAll();
+	}
+
+	@Override
+	public List<Concessionnaire> recupererConcessionnaires() {
+		return concessionnaireDao.findAll();
 	}
 	
 	

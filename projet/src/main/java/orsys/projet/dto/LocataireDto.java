@@ -1,8 +1,6 @@
 package orsys.projet.dto;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.validation.constraints.PastOrPresent;
 
@@ -24,9 +22,18 @@ public class LocataireDto extends UtilisateurDto {
 	@NonNull
 	@PastOrPresent
 	LocalDateTime dateHeureInscription;
-	
+
 	LienDeParente lienDeParente;
-	
+
 	@NonNull
 	PaysDto pays;
+	
+	boolean valide;
+
+	public LocataireDto(Long id, String email, String role) {
+		super(id, email, role);
+	}
+	
+	
+
 }

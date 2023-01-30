@@ -89,9 +89,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner{
 	private void ajouterStatut() {
 		statutDao.save(new Statut("En attente"));
 		statutDao.save(new Statut("Refusée"));
-		statutDao.save(new Statut("Acceptée"));
-		statutDao.save(new Statut("Payée"));
-		
+		statutDao.save(new Statut("Acceptée"));		
 	}
 
 	private void ajouterParasol() {
