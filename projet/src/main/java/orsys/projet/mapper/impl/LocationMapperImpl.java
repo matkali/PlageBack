@@ -19,13 +19,11 @@ import orsys.projet.mapper.StatutMapper;
 import orsys.projet.mapper.StatutMapperImpl;
 
 public class LocationMapperImpl implements LocationMapper {
-	ConcessionnaireMapper concessionnaireMapper = new ConcessionnaireMapperImpl();
-	StatutMapper statutMapper = new StatutMapperImpl();
-	ParasolMapper parasolMapper = new ParasolMapperImpl();
-	LocataireMapper locataireMapper = new LocataireMapperImpl();
 
 	@Override
 	public LocationDto toDto(Location location) {
+		StatutMapper statutMapper = new StatutMapperImpl();
+		ConcessionnaireMapper concessionnaireMapper = new ConcessionnaireMapperImpl();
 		ConcessionnaireDto concessionnaireDto = concessionnaireMapper.toDto(location.getConcessionnaire());
 		StatutDto statutDto = statutMapper.toDto(location.getStatut());
 		return new LocationDto(location.getDateDebut(), location.getDateFin(), location.getMontantAReglerEnEuros(),
@@ -34,9 +32,16 @@ public class LocationMapperImpl implements LocationMapper {
 
 	@Override
 	public LocationDtoEx toDtoEx(Location location) {
-		LocationDtoEx locationDtoEx = (LocationDtoEx) toDto(location);
-		List<ParasolDto> parasols =new ArrayList<>();
-		for(Parasol parasol:location.getParasols()) {
+		ParasolMapper parasolMapper = new ParasolMapperImpl();
+		LocataireMapper locataireMapper = new LocataireMapperImpl();
+		StatutMapper statutMapper = new StatutMapperImpl();
+		ConcessionnaireMapper concessionnaireMapper = new ConcessionnaireMapperImpl();
+		ConcessionnaireDto concessionnaireDto = concessionnaireMapper.toDto(location.getConcessionnaire());
+		StatutDto statutDto = statutMapper.toDto(location.getStatut());
+		LocationDtoEx locationDtoEx = new LocationDtoEx(location.getDateDebut(), location.getDateFin(), location.getMontantAReglerEnEuros(),
+				location.getRemarque(), concessionnaireDto, statutDto, (byte) location.getParasols().size());
+		List<ParasolDto> parasols = new ArrayList<>();
+		for (Parasol parasol : location.getParasols()) {
 			parasols.add(parasolMapper.toDto(parasol, null, null));
 		}
 		locationDtoEx.setParasols(parasols);
@@ -48,6 +53,15 @@ public class LocationMapperImpl implements LocationMapper {
 	public Location toEntity(LocationDto locationDto) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<LocationDto> toDto(List<Location> locations) {
+		List<LocationDto> locationDtos = new ArrayList<>();
+		for(Location location:locations) {
+			locationDtos.add(toDto(location));
+		}
+		return locationDtos;
 	}
 
 }

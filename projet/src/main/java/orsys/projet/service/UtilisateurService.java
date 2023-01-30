@@ -19,6 +19,10 @@ public interface UtilisateurService {
 	
 	Utilisateur recupererUtilisateur (String email, String motDePasse);
 	
+	List<Locataire> recupererLocataires();
+	
+	List<Concessionnaire> recupererConcessionnaires();
+	
 	String recupererConcessionnaireouLocataire(String email, String motDePasse);
 	
 	List<Utilisateur> recupererUtilisateursParNom (String nom);

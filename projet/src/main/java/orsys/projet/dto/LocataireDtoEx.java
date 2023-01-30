@@ -13,5 +13,9 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class LocataireDtoEx extends LocataireDto {
+	public LocataireDtoEx(Long id, String email, String role) {
+		super(id, email, role);
+	}
+
 	List<LocationDto> locations;
 }

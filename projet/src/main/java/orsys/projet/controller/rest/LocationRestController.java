@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
-import orsys.projet.business.Location;
 import orsys.projet.business.Statut;
+import orsys.projet.dto.LocationDto;
+import orsys.projet.dto.LocationDtoEx;
+import orsys.projet.mapper.LocationMapper;
+import orsys.projet.mapper.impl.LocationMapperImpl;
 import orsys.projet.service.LocationService;
 import orsys.projet.service.StatutService;
 
@@ -23,23 +26,26 @@ public class LocationRestController {
 
 	private final LocationService locationService;
 	private final StatutService statutService;
-	
-	@GetMapping(value="locations")
-	public List<Location> getLocation() {
-		return locationService.recupererLocation();
+
+	private final LocationMapper locationMapper = new LocationMapperImpl();
+
+	@GetMapping(value = "locations")
+	public List<LocationDto> getLocation() {
+		// TODO vérifier la session
+		return locationMapper.toDto(locationService.recupererLocation());
 	}
-	
-	@GetMapping(value="locations_en_attente")
-	public List<Location> getLocationEnAttente() {
-		//TODO vérifier la session
+
+	@GetMapping(value = "locations_en_attente")
+	public List<LocationDto> getLocationEnAttente() {
+		// TODO vérifier la session
 		Statut statut = statutService.recupererStatutsParDebutNom("En").get(0);
-		return locationService.recupererLocationParStatut(statut);
+		return locationMapper.toDto(locationService.recupererLocationParStatut(statut));
 	}
-	
-	@PostMapping(value="location")
-	public Location getLocation(@RequestParam("ID") Long id) {
-		//TODO vérifier la session
-		return locationService.recupererLocationParId(id);
+
+	@PostMapping(value = "location")
+	public LocationDtoEx getLocation(@RequestParam("ID") Long id) {
+		// TODO vérifier la session
+		return locationMapper.toDtoEx(locationService.recupererLocationParId(id));
 	}
-	
+
 }

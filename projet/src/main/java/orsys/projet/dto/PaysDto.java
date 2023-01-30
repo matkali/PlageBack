@@ -1,7 +1,5 @@
 package orsys.projet.dto;
 
-import java.util.List;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +18,4 @@ public class PaysDto {
 	private String code;
 	@NonNull
 	private String nom;
-	@NonNull
-	private List<LocataireDto> locataires;
 }

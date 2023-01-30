@@ -30,4 +30,10 @@ public class LocataireDto extends UtilisateurDto {
 	
 	boolean valide;
 
+	public LocataireDto(Long id, String email, String role) {
+		super(id, email, role);
+	}
+	
+	
+
 }
