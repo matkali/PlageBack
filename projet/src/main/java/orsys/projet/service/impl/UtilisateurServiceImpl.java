@@ -148,6 +148,12 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 			return true;
 		}
 	}
+
+	@Override
+	public String recupererConcessionnaireouLocataire(String email, String motDePasse) {
+		
+		return null;
+	}
 	
 	
 

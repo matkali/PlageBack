@@ -116,7 +116,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner{
 	}
 
 	private void ajouterConcessionnaire() {
-		concessionnaireDao.save(new Concessionnaire("Rossini", "Mateo", "rosssini.mateo@gmail.com", "123", "0611223344"));
+		concessionnaireDao.save(new Concessionnaire("Rossini", "Mateo", "rossini.mateo@gmail.com", "123", "0611223344"));
 		
 	}
 
