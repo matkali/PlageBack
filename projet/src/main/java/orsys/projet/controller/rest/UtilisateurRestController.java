@@ -23,7 +23,7 @@ import orsys.projet.service.UtilisateurService;
 @CrossOrigin(origins = "http://localhost:4200")
 public class UtilisateurRestController {
 	private final UtilisateurService utilisateurService;
-
+	
 	@GetMapping("utilisateurs/{email}/{motDePasse}")
 	public ResponseEntity<Utilisateur> utilisateurGet(@PathVariable String email, @PathVariable String motDePasse) {
 		Utilisateur utilisateur = utilisateurService.recupererUtilisateur(email, motDePasse);
@@ -41,8 +41,8 @@ public class UtilisateurRestController {
 		if (utilisateur == null) {
 			return ResponseEntity.badRequest().body(null);
 		}
-//		List<Concessionnaire> concessionnaires = utilisateurService
-		UtilisateurDto uDto = new UtilisateurDto(utilisateur.getId(), utilisateur.getEmail());
+		String role = utilisateurService.recupererConcessionnaireouLocataire(email, motDePasse);
+		UtilisateurDto uDto = new UtilisateurDto(utilisateur.getId(), utilisateur.getEmail(), role);
 		return ResponseEntity.ok(uDto);
 	}
 
