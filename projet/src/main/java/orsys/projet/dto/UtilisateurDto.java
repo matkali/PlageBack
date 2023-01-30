@@ -33,8 +33,9 @@ public class UtilisateurDto {
 	
 	String role;
 	
-	public UtilisateurDto(Long id, String email) {
+	public UtilisateurDto(Long id, String email, String role) {
 		this.id = id;
 		this.email = email;
+		this.role = role;
 	}
 }
