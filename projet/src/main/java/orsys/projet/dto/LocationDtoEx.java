@@ -1,6 +1,6 @@
 package orsys.projet.dto;
 
-import javax.validation.constraints.Pattern;
+import java.util.List;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -10,15 +10,15 @@ import lombok.NonNull;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ConcessionnaireDto extends UtilisateurDto {
-
+public class LocationDtoEx extends LocationDto {
 	@NonNull
-	@Pattern(regexp = "\\d{10}", message = "veuillez un numéro de téléphone composé de 10 chiffres")
-	String numeroDeTelephone;
+	LocataireDto locataire;
+	
+	@NonNull
+	List<ParasolDto> parasols;
 }

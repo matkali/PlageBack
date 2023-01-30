@@ -8,7 +8,7 @@ import orsys.projet.business.Statut;
 
 public interface StatutDao extends JpaRepository<Statut, Long> {
 
-	Statut findByNom(String nom);
+    Statut findByNom(String nom);
 
-	List<Statut> findAllByNomStartingWith(String nom);
+    List<Statut> findAllByNomStartingWith(String nom);
 }
