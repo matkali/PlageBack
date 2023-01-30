@@ -22,8 +22,11 @@ public class LocataireMapperImpl implements LocataireMapper {
 		LocataireDto locataireDto = new LocataireDto(locataire.getId(), locataire.getEmail(),
 				"locataire");
 		locataireDto.setDateHeureInscription(locataire.getDateHeureInscription());
-		locataireDto.setLienDeParente(locataire.getLienDeParente());
-		locataireDto.setPays(paysMapper.toDto(locataire.getPays()));
+		locataireDto.setLienDeParenteString(locataire.getLienDeParente().getNom());
+		locataireDto.setCoefficient(locataire.getLienDeParente().getCoefficient());
+		locataireDto.setPaysString(locataire.getPays().getNom());
+		locataireDto.setNom(locataire.getNom());
+		locataireDto.setPrenom(locataire.getPrenom());
 		locataireDto.setValide(false);
 		for (Location location : locataire.getLocations()) {
 			if (location.getStatut().getNom().equals("Acceptée")) {
