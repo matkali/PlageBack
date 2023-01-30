@@ -1,10 +1,9 @@
 package orsys.projet.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.validation.constraints.PastOrPresent;
-
-import org.HdrHistogram.SingleWriterDoubleRecorder;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -39,6 +38,9 @@ public class LocataireDto extends UtilisateurDto {
 	
 	double coefficient;
 	
+	String role;
+	
+
 
 	@NonNull
 	PaysDto pays;
@@ -50,13 +52,17 @@ public class LocataireDto extends UtilisateurDto {
 	}
 	
 	
-	public LocataireDto(String nom, String prenom, String email, String mdp, String lienDeParente, String pays, double coef) {
+	public LocataireDto(Long id,String nom, String prenom, String email, String mdp, String role, String dateHeureInscription, String lienDeParente, String pays, boolean valide, double coef) {
+		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 		this.mdp = mdp;
+		this.role = role;
+		this.dateHeureInscription = LocalDateTime.now();
 		this.lienDeParenteString = lienDeParente;
 		this.paysString = pays;
+		this.valide = valide;
 		this.coefficient = coef;
 	}
 	

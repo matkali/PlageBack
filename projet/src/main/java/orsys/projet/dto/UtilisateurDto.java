@@ -27,7 +27,7 @@ public class UtilisateurDto {
 //	@Size(min = 3, message = "Le mot de passe doit comporter au moins trois caractères")
 //	String motDePasse;
 	
-	Long id; 
+	protected Long id; 
 	
 	protected String email;
 	
