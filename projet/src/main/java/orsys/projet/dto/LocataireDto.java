@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import javax.validation.constraints.PastOrPresent;
 
+import org.HdrHistogram.SingleWriterDoubleRecorder;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +26,19 @@ public class LocataireDto extends UtilisateurDto {
 	LocalDateTime dateHeureInscription;
 
 	LienDeParente lienDeParente;
+	
+	String nom;
+	
+	String prenom; 
+	
+	String mdp;
+	
+	String lienDeParenteString;
+	
+	String paysString;
+	
+	double coefficient;
+	
 
 	@NonNull
 	PaysDto pays;
@@ -33,6 +48,18 @@ public class LocataireDto extends UtilisateurDto {
 	public LocataireDto(Long id, String email, String role) {
 		super(id, email, role);
 	}
+	
+	
+	public LocataireDto(String nom, String prenom, String email, String mdp, String lienDeParente, String pays, double coef) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.mdp = mdp;
+		this.lienDeParenteString = lienDeParente;
+		this.paysString = pays;
+		this.coefficient = coef;
+	}
+	
 	
 	
 

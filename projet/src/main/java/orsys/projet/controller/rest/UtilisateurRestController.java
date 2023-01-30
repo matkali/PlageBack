@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.AllArgsConstructor;
 import orsys.projet.business.Locataire;
 import orsys.projet.business.Utilisateur;
+import orsys.projet.dto.LocataireDto;
 import orsys.projet.dto.UtilisateurDto;
 import orsys.projet.service.UtilisateurService;
 
@@ -47,8 +49,11 @@ public class UtilisateurRestController {
 		return ResponseEntity.ok(uDto);
 	}
 	
-	@PostMapping("utilisateurs/creationLocataire/{nom}/{prenom}/{email}/{motDePasse}/{lienDeParente}/{pays}")
+	@PostMapping("utilisateurs/creationLocataire")
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public ResponseEntity<Locataire> locatairePost()
+	public ResponseEntity<Locataire> locatairePost(@RequestBody LocataireDto locataireDto){
+		Locataire locataire = utilisateurService.enregistrerLocataire(locataireDto.getNom(), locataireDto.getPrenom(), locataireDto.getEmail(), locataireDto.getMdp(), locataireDto.getLienDeParenteString(), locataireDto.getPaysString());
+		return new ResponseEntity<>(locataire, HttpStatus.CREATED);
+	}
 	
 }

@@ -29,7 +29,7 @@ public class UtilisateurDto {
 	
 	Long id; 
 	
-	String email;
+	protected String email;
 	
 	String role;
 	
