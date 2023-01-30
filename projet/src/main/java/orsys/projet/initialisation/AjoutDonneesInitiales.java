@@ -121,6 +121,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner{
 	}
 
 	private void ajouterLocataire() {
+		
 		Random rand = new Random();
 		List<Pays> listPays = paysDao.findAll();
 		List<LienDeParente> lienDeParentes = lienDeParenteDao.findAll();
@@ -131,6 +132,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner{
 				locataireDao.save(new Locataire(faker.name().lastName(), faker.name().firstName(),fakeValuesService.letterify("?????@gmail.com") , faker.internet().password(3,8), lienDeParente, pays));
 			}
 		}
+		locataireDao.save(new Locataire("lola", "lola", "lol@gmail.com", "123", lienDeParentes.get(rand.nextInt(lienDeParentes.size())), listPays.get(rand.nextInt(listPays.size()))));
 		
 	}
 

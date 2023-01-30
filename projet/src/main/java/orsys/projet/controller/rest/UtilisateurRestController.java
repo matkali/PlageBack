@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
+import orsys.projet.business.Locataire;
 import orsys.projet.business.Utilisateur;
 import orsys.projet.dto.UtilisateurDto;
 import orsys.projet.service.UtilisateurService;
@@ -45,5 +46,9 @@ public class UtilisateurRestController {
 		UtilisateurDto uDto = new UtilisateurDto(utilisateur.getId(), utilisateur.getEmail(), role);
 		return ResponseEntity.ok(uDto);
 	}
+	
+	@PostMapping("utilisateurs/creationLocataire/{nom}/{prenom}/{email}/{motDePasse}/{lienDeParente}/{pays}")
+	@ResponseStatus(value = HttpStatus.CREATED)
+	public ResponseEntity<Locataire> locatairePost()
 	
 }
