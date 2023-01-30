@@ -20,8 +20,7 @@ import orsys.projet.business.LienDeParente;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class LocataireDto extends UtilisateurDto {
-	@NonNull
-	@PastOrPresent
+	
 	LocalDateTime dateHeureInscription;
 
 	LienDeParente lienDeParente;
