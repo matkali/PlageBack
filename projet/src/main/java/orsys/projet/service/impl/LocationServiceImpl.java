@@ -25,9 +25,9 @@ public class LocationServiceImpl implements LocationService {
 
 	@Override
 	public Location enregisterLocation(Location location) {
-		if (locationDao.existsById(location.getId())) {
-			throw new LocationExistanteException();
-		}
+//		if (locationDao.existsById(location.getId())) {
+//			throw new LocationExistanteException();
+//		}
 		return locationDao.save(location);
 	}
 
