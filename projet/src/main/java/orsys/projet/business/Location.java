@@ -16,7 +16,6 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 @Data
 @Entity
@@ -78,11 +77,11 @@ public class Location {
 
 	private void calculMontantARegler() {
 		this.montantAReglerEnEuros = (double) 0;
-		for (Parasol parasol : this.parasols) {
-			this.montantAReglerEnEuros += parasol.getFile().getPrixJournalier();
-		}
-		int nbJours = (int) this.dateDebut.until(dateFin, ChronoUnit.DAYS) + 1;
-		this.montantAReglerEnEuros *= nbJours;
+//		for (Parasol parasol : this.parasols) {
+//			this.montantAReglerEnEuros += parasol.getFile().getPrixJournalier();
+//		}
+//		int nbJours = (int) this.dateDebut.until(dateFin, ChronoUnit.DAYS) + 1;
+//		this.montantAReglerEnEuros *= nbJours;
 	}
 
 }

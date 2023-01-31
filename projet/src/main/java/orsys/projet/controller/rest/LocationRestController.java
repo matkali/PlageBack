@@ -75,10 +75,10 @@ public class LocationRestController {
 		List<ParasolDto> parasolsDto =locationDto.getParasols();
 		List<Parasol> parasols = new ArrayList<>();
 		for(ParasolDto parasol : parasolsDto) {
-			Parasol para = parasolService.recupererParasolParNumEtFile((byte) -1, fileService.recupererFile(parasol.getNumFile()));
+			Parasol para = parasolService.recupererParasolParNumEtFile((byte) -1, fileService.recupererFile((byte) parasol.getNumFile()));
 			parasols.add(para);
 		}
-		Location location = locationService.enregisterLocation(locationDto.getDateDebut(), locationDto.getDateFin(), parasols, locataire, statut, concessionnaire);
+		Location location = locationService.enregisterLocation(locationDto.getDateDebut(), locationDto.getDateFin(), parasols, locataire, statut, concessionnaire, locationDto.getRemarque());
 		return new ResponseEntity<>(location, HttpStatus.CREATED);
 	}
 
