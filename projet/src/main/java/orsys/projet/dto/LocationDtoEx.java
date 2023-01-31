@@ -17,15 +17,12 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class LocationDtoEx extends LocationDto {
-	@NonNull
-	LocataireDto locataire;
-
-	@NonNull
+	
 	List<ParasolDto> parasols;
 
-	public LocationDtoEx(@NonNull LocalDate dateDebut, @NonNull LocalDate dateFin, double montantAReglerEnEuros,
+	public LocationDtoEx(@NonNull LocalDate dateDebut, @NonNull LocalDate dateFin, double montantAReglerEnEuros, LocataireDto locataire,
 			String remarque, @NonNull ConcessionnaireDto concessionnaire, @NonNull StatutDto statut, byte nbParasols) {
-		super(dateDebut, dateFin, montantAReglerEnEuros, remarque, concessionnaire, statut, nbParasols);
+		super(dateDebut, dateFin, montantAReglerEnEuros,locataire, remarque, concessionnaire, statut, nbParasols);
 	}
 
 }

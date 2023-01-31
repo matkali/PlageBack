@@ -19,22 +19,21 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class LocationDto {
-	@NonNull
 	LocalDate dateDebut;
 
-	@NonNull
 	LocalDate dateFin;
 
 	double montantAReglerEnEuros;
+	
+	@NonNull
+	LocataireDto locataire;
 
 	@Column(length = 500)
 	String remarque;
 
-	@NonNull
 	@ManyToOne
 	ConcessionnaireDto concessionnaire;
 
-	@NonNull
 	@ManyToOne
 	StatutDto statut;
 

@@ -143,6 +143,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		parasols3.add(parasol1B);
 		parasols3.add(parasol1J);
 		location1 = new Location(dateToday,dateToday.plusDays(3),FX,Mateo,statutAcceptee,parasols3);
+		location1.setRemarque("Merci de mettre ma belle-mère à l'écart");
 		locationDao.save(location1);
 		List<Parasol> parasols4 = parasolsFile2;
 		location2 = new Location(dateToday.minusDays(2),dateToday,Lola,Mateo,statutAcceptee,parasols4);

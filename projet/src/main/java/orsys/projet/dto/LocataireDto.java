@@ -39,9 +39,6 @@ public class LocataireDto extends UtilisateurDto {
 	
 	String role;
 	
-
-
-	@NonNull
 	PaysDto pays;
 	
 	boolean valide;

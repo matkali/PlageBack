@@ -6,6 +6,7 @@ import java.util.List;
 import orsys.projet.business.Location;
 import orsys.projet.business.Parasol;
 import orsys.projet.dto.ConcessionnaireDto;
+import orsys.projet.dto.LocataireDto;
 import orsys.projet.dto.LocationDto;
 import orsys.projet.dto.LocationDtoEx;
 import orsys.projet.dto.ParasolDto;
@@ -23,11 +24,15 @@ public class LocationMapperImpl implements LocationMapper {
 	@Override
 	public LocationDto toDto(Location location) {
 		StatutMapper statutMapper = new StatutMapperImpl();
+		LocataireMapper locataireMapper = new LocataireMapperImpl();
+		LocataireDto locataireDto = locataireMapper.toDto(location.getLocataire());
 		ConcessionnaireMapper concessionnaireMapper = new ConcessionnaireMapperImpl();
 		ConcessionnaireDto concessionnaireDto = concessionnaireMapper.toDto(location.getConcessionnaire());
+		concessionnaireDto.setRole("concessionnaire");
 		StatutDto statutDto = statutMapper.toDto(location.getStatut());
 		return new LocationDto(location.getDateDebut(), location.getDateFin(), location.getMontantAReglerEnEuros(),
-				location.getRemarque(), concessionnaireDto, statutDto, (byte) location.getParasols().size());
+				locataireDto, location.getRemarque(), concessionnaireDto, statutDto,
+				(byte) location.getParasols().size());
 	}
 
 	@Override
@@ -36,16 +41,17 @@ public class LocationMapperImpl implements LocationMapper {
 		LocataireMapper locataireMapper = new LocataireMapperImpl();
 		StatutMapper statutMapper = new StatutMapperImpl();
 		ConcessionnaireMapper concessionnaireMapper = new ConcessionnaireMapperImpl();
+		LocataireDto locataireDto = locataireMapper.toDto(location.getLocataire());
 		ConcessionnaireDto concessionnaireDto = concessionnaireMapper.toDto(location.getConcessionnaire());
 		StatutDto statutDto = statutMapper.toDto(location.getStatut());
-		LocationDtoEx locationDtoEx = new LocationDtoEx(location.getDateDebut(), location.getDateFin(), location.getMontantAReglerEnEuros(),
-				location.getRemarque(), concessionnaireDto, statutDto, (byte) location.getParasols().size());
+		LocationDtoEx locationDtoEx = new LocationDtoEx(location.getDateDebut(), location.getDateFin(),
+				location.getMontantAReglerEnEuros(), locataireDto, location.getRemarque(), concessionnaireDto,
+				statutDto, (byte) location.getParasols().size());
 		List<ParasolDto> parasols = new ArrayList<>();
 		for (Parasol parasol : location.getParasols()) {
 			parasols.add(parasolMapper.toDto(parasol, null, null));
 		}
 		locationDtoEx.setParasols(parasols);
-		locationDtoEx.setLocataire(locataireMapper.toDto(location.getLocataire()));
 		return locationDtoEx;
 	}
 
@@ -58,7 +64,7 @@ public class LocationMapperImpl implements LocationMapper {
 	@Override
 	public List<LocationDto> toDto(List<Location> locations) {
 		List<LocationDto> locationDtos = new ArrayList<>();
-		for(Location location:locations) {
+		for (Location location : locations) {
 			locationDtos.add(toDto(location));
 		}
 		return locationDtos;
