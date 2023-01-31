@@ -77,11 +77,13 @@ public class Location {
 
 	private void calculMontantARegler() {
 		this.montantAReglerEnEuros = (double) 0;
-//		for (Parasol parasol : this.parasols) {
-//			this.montantAReglerEnEuros += parasol.getFile().getPrixJournalier();
-//		}
-//		int nbJours = (int) this.dateDebut.until(dateFin, ChronoUnit.DAYS) + 1;
-//		this.montantAReglerEnEuros *= nbJours;
+		for (Parasol parasol : this.parasols) {
+			this.montantAReglerEnEuros += parasol.getFile().getPrixJournalier();
+		}
+		int nbJours = (int) this.dateDebut.until(dateFin, ChronoUnit.DAYS) + 1;
+		this.montantAReglerEnEuros *= nbJours;
+		float coef = this.locataire.getLienDeParente().getCoefficient();
+		this.montantAReglerEnEuros *= coef;
 	}
 
 }
