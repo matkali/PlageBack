@@ -28,8 +28,8 @@ public class LocationServiceImpl implements LocationService {
 	public Location enregisterLocation(Location location) {
 		if (locationDao.existsById(location.getId())) {
 			throw new LocationExistanteException();
-		}
-		return locationDao.save(location);
+		} else {
+		return locationDao.save(location);}
 	}
 
 	@Override

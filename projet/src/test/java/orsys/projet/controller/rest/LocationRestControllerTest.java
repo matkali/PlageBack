@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import orsys.projet.business.Locataire;
 import orsys.projet.dto.LocataireDto;
-import orsys.projet.dto.LocationDto;
+import orsys.projet.dto.LocationDtoEx;
 import orsys.projet.mapper.LocataireMapper;
 import orsys.projet.service.LocationService;
 import orsys.projet.service.UtilisateurService;
@@ -71,8 +71,10 @@ public class LocationRestControllerTest {
 	@Order(3)
 	public void testRecupererLocation() throws Exception {
 		long idTest = locationService.recupererLocation().get(0).getId();
-		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/location", idTest);
-		mockMvc.perform(requestBuilder).andExpect(MockMvcResultMatchers.jsonPath("$[0].concessionnaire").doesNotExist());
+		System.out.println(idTest);
+		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/location").param("ID", String.valueOf(idTest));
+		mockMvc.perform(requestBuilder).andExpect(MockMvcResultMatchers.jsonPath("$.montantAReglerEnEuros").value(225))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.parasols").isArray());
 	}
 	
 	@Test
@@ -80,8 +82,9 @@ public class LocationRestControllerTest {
 	public void testCreationLocation() throws Exception {
 		Locataire lola = (Locataire) utilisateurService.recupererUtilisateursParPrenom("lola").get(0);
 		LocataireDto lolaDto = locataireMapper.toDto(lola); 
-		LocationDto locationDto = new LocationDto(LocalDate.now(), LocalDate.now(), 0, lolaDto, "j'ai faim", null, null,(byte) 0);
+		LocationDtoEx locationDto = new LocationDtoEx (LocalDate.now(), LocalDate.now(), 0, lolaDto, "j'ai faim", null, null,(byte) 0);
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/api/creationLocation", locationDto);
+		mockMvc.perform(requestBuilder);
 		MockHttpServletRequestBuilder requestBuilder2 = MockMvcRequestBuilders.get("/api/locations");
 		//on vérifie qu'il y a une ligne de plus, et les paramètres de la dernière ligne
 		mockMvc.perform(requestBuilder2).andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(6))

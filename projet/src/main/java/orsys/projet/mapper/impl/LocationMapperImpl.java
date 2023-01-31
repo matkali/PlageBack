@@ -51,7 +51,7 @@ public class LocationMapperImpl implements LocationMapper {
 				statutDto, (byte) location.getParasols().size());
 		List<ParasolDto> parasols = new ArrayList<>();
 		for (Parasol parasol : location.getParasols()) {
-			parasols.add(parasolMapper.toDto(parasol, null, null));
+			parasols.add(parasolMapper.toDto(parasol, location.getDateDebut(), location.getDateFin()));
 		}
 		locationDtoEx.setParasols(parasols);
 		return locationDtoEx;
