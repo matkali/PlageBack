@@ -93,4 +93,9 @@ public class FileServiceImpl implements FileService {
 		return fileDtos;
 	}
 
+	@Override
+	public File recupererFile(byte num) {
+		return fileDao.findByNumero(num);
+	}
+
 }

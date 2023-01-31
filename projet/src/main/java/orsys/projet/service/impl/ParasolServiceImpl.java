@@ -86,4 +86,9 @@ public class ParasolServiceImpl implements ParasolService {
 		return parasolDao.findAll();
 	}
 
+	@Override
+	public Parasol recupererParasolParNumEtFile(byte numEmplacement, File file) {
+		return parasolDao.findByNumEmplacementAndFile(numEmplacement, file);
+	}
+
 }

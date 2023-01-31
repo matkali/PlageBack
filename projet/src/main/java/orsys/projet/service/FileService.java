@@ -21,6 +21,8 @@ public interface FileService {
 	
 	File recupererFile(Long id);
 	
+	File recupererFile(byte num);
+	
 	List<Parasol> recupererParasolsDeFile(File file);
 	
 	List<FileDto> recupererFilesInfo(LocalDate dateDeb, LocalDate dateFin);

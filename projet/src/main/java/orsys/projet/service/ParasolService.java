@@ -19,4 +19,6 @@ public interface ParasolService {
 	Parasol ajouterLocationAParasol(Long id, Location location);
 	
 	List<Parasol> recupererParasol();
+	
+	Parasol recupererParasolParNumEtFile(byte numEmplacement,File file);
 }
