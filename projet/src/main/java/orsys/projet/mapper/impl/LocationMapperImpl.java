@@ -3,6 +3,8 @@ package orsys.projet.mapper.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import orsys.projet.business.Location;
 import orsys.projet.business.Parasol;
 import orsys.projet.dto.ConcessionnaireDto;
@@ -18,7 +20,7 @@ import orsys.projet.mapper.LocationMapper;
 import orsys.projet.mapper.ParasolMapper;
 import orsys.projet.mapper.StatutMapper;
 import orsys.projet.mapper.StatutMapperImpl;
-
+@Component
 public class LocationMapperImpl implements LocationMapper {
 
 	@Override

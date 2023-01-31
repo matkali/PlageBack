@@ -3,16 +3,17 @@ package orsys.projet.mapper.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import orsys.projet.business.Locataire;
 import orsys.projet.business.Location;
 import orsys.projet.dto.LocataireDto;
 import orsys.projet.dto.LocataireDtoEx;
-import orsys.projet.dto.UtilisateurDto;
 import orsys.projet.mapper.LocataireMapper;
 import orsys.projet.mapper.LocationMapper;
 import orsys.projet.mapper.PaysMapper;
 import orsys.projet.mapper.PaysMapperImpl;
-
+@Component
 public class LocataireMapperImpl implements LocataireMapper {
 	private final PaysMapper paysMapper = new PaysMapperImpl();
 	private final LocationMapper locationMapper = new LocationMapperImpl();

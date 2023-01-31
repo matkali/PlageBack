@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.Setter;
 import orsys.projet.business.Concessionnaire;
 import orsys.projet.business.Locataire;
 import orsys.projet.business.Location;

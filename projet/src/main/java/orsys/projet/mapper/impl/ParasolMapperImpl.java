@@ -2,11 +2,13 @@ package orsys.projet.mapper.impl;
 
 import java.time.LocalDate;
 
+import org.springframework.stereotype.Component;
+
 import orsys.projet.business.Location;
 import orsys.projet.business.Parasol;
 import orsys.projet.dto.ParasolDto;
 import orsys.projet.mapper.ParasolMapper;
-
+@Component
 public class ParasolMapperImpl implements ParasolMapper {
 
 	@Override
