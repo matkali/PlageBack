@@ -112,4 +112,9 @@ public class LocationServiceImpl implements LocationService {
 		return locationDao.findById(id).orElse(null);
 	}
 
+	@Override
+	public List<Location> recupererLocationParClientID(Long id) {
+		return locationDao.findLocationByLocataireId(id);
+	}
+
 }
