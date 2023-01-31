@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
 import orsys.projet.business.Locataire;
+import orsys.projet.business.Location;
 import orsys.projet.business.Utilisateur;
 import orsys.projet.dto.LocataireDto;
+import orsys.projet.dto.LocationDto;
 import orsys.projet.dto.UtilisateurDto;
 import orsys.projet.service.UtilisateurService;
 
@@ -26,6 +28,8 @@ import orsys.projet.service.UtilisateurService;
 @CrossOrigin(origins = "http://localhost:4200")
 public class UtilisateurRestController {
 	private final UtilisateurService utilisateurService;
+	
+	
 	
 	@GetMapping("utilisateurs/{email}/{motDePasse}")
 	public ResponseEntity<Utilisateur> utilisateurGet(@PathVariable String email, @PathVariable String motDePasse) {
@@ -55,5 +59,7 @@ public class UtilisateurRestController {
 		Locataire locataire = utilisateurService.enregistrerLocataire(locataireDto.getNom(), locataireDto.getPrenom(), locataireDto.getEmail(), locataireDto.getMdp(), locataireDto.getLienDeParenteString(), locataireDto.getPaysString());
 		return new ResponseEntity<>(locataire, HttpStatus.CREATED);
 	}
+	
+	
 	
 }

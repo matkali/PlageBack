@@ -39,7 +39,7 @@ public class LocationMapperImpl implements LocationMapper {
 		ConcessionnaireDto concessionnaireDto = concessionnaireMapper.toDto(location.getConcessionnaire());
 		StatutDto statutDto = statutMapper.toDto(location.getStatut());
 		LocationDtoEx locationDtoEx = new LocationDtoEx(location.getDateDebut(), location.getDateFin(), location.getMontantAReglerEnEuros(),
-				location.getRemarque(), concessionnaireDto, statutDto, (byte) location.getParasols().size());
+				location.getRemarque(), concessionnaireDto, statutDto, (byte) location.getParasols().size(), null );
 		List<ParasolDto> parasols = new ArrayList<>();
 		for (Parasol parasol : location.getParasols()) {
 			parasols.add(parasolMapper.toDto(parasol, null, null));

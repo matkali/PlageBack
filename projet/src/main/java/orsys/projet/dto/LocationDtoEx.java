@@ -24,7 +24,7 @@ public class LocationDtoEx extends LocationDto {
 	List<ParasolDto> parasols;
 
 	public LocationDtoEx(@NonNull LocalDate dateDebut, @NonNull LocalDate dateFin, double montantAReglerEnEuros,
-			String remarque, @NonNull ConcessionnaireDto concessionnaire, @NonNull StatutDto statut, byte nbParasols) {
+			String remarque, @NonNull ConcessionnaireDto concessionnaire, @NonNull StatutDto statut, byte nbParasols, LocataireDto locataire) {
 		super(dateDebut, dateFin, montantAReglerEnEuros, remarque, concessionnaire, statut, nbParasols);
 	}
 
