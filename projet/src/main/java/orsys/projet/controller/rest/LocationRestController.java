@@ -3,6 +3,7 @@ package orsys.projet.controller.rest;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.boot.autoconfigure.security.ConditionalOnDefaultWebSecurity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -22,9 +23,11 @@ import orsys.projet.business.Locataire;
 import orsys.projet.business.Location;
 import orsys.projet.business.Parasol;
 import orsys.projet.business.Statut;
+import orsys.projet.business.Utilisateur;
 import orsys.projet.dto.LocationDto;
 import orsys.projet.dto.LocationDtoEx;
 import orsys.projet.dto.ParasolDto;
+import orsys.projet.dto.UtilisateurDto;
 import orsys.projet.mapper.LocationMapper;
 import orsys.projet.mapper.impl.LocationMapperImpl;
 import orsys.projet.service.FileService;
@@ -78,6 +81,17 @@ public class LocationRestController {
 		}
 		Location location = locationService.enregisterLocation(locationDto.getDateDebut(), locationDto.getDateFin(), parasols, locataire, statut, concessionnaire, locationDto.getRemarque());
 		return new ResponseEntity<>(location, HttpStatus.CREATED);
+	}
+	
+	@PostMapping("locations/modifStatutResa/{id}/{statut}")
+	@ResponseStatus(value = HttpStatus.OK)
+	public ResponseEntity<Location> utilisateurConnexion(@PathVariable Long id,
+			@PathVariable String statut) {
+		Statut stat = statutService.recupererStatutParNom(statut);
+		if (stat == null) {
+			return ResponseEntity.badRequest().body(null);
+		}
+		return ResponseEntity.ok(locationService.changerStatutLocation(id, stat));
 	}
 
 }
