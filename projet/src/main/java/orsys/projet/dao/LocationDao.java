@@ -24,5 +24,7 @@ public interface LocationDao extends JpaRepository<Location, Long>{
 	
 	List<Location> findLocationByStatut(Statut statut);
 	List<Location> findLocationByLocataire(Locataire locataire);
+
+	List<Location> findLocationByLocataireId(Long id);
 	List<Location> findLocationByConcessionnaire(Concessionnaire concessionnaire);
 }
