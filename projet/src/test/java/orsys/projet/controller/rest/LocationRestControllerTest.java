@@ -86,11 +86,12 @@ class LocationRestControllerTest {
 	void testCreationLocation() throws Exception {
 		Locataire lola = (Locataire) utilisateurService.recupererUtilisateursParPrenom("lola").get(0);
 		LocataireDto lolaDto = locataireMapper.toDto(lola);
-		LocationDtoEx locationDto = new LocationDtoEx(LocalDate.now(), LocalDate.now(), 0, lolaDto, "j'ai faim", null,
+		LocationDtoEx locationDto = new LocationDtoEx(13L, LocalDate.now(), LocalDate.now(), 0, lolaDto, "j'ai faim", null,
 				null, (byte) 0);
 		locationDto.setParasols(new ArrayList<>());
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilderUtils.postForm("/api/creationLocation",
 				locationDto);
 		mockMvc.perform(requestBuilder).andExpect(MockMvcResultMatchers.status().isCreated());
+		// TODO Pourquoi ca marche pas? Le front arrive à utiliser cette api et la BDD est mise à jour comme il faut.
 	}
 }

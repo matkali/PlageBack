@@ -32,7 +32,7 @@ public class LocationMapperImpl implements LocationMapper {
 		ConcessionnaireDto concessionnaireDto = concessionnaireMapper.toDto(location.getConcessionnaire());
 		if(concessionnaireDto!=null) {concessionnaireDto.setRole("concessionnaire");}
 		StatutDto statutDto = statutMapper.toDto(location.getStatut());
-		return new LocationDto(location.getDateDebut(), location.getDateFin(), location.getMontantAReglerEnEuros(),
+		return new LocationDto(location.getId(), location.getDateDebut(), location.getDateFin(), location.getMontantAReglerEnEuros(),
 				locataireDto, location.getRemarque(), concessionnaireDto, statutDto,
 				(byte) location.getParasols().size());
 	}
@@ -46,7 +46,7 @@ public class LocationMapperImpl implements LocationMapper {
 		LocataireDto locataireDto = locataireMapper.toDto(location.getLocataire());
 		ConcessionnaireDto concessionnaireDto = concessionnaireMapper.toDto(location.getConcessionnaire());
 		StatutDto statutDto = statutMapper.toDto(location.getStatut());
-		LocationDtoEx locationDtoEx = new LocationDtoEx(location.getDateDebut(), location.getDateFin(),
+		LocationDtoEx locationDtoEx = new LocationDtoEx(location.getId(),location.getDateDebut(), location.getDateFin(),
 				location.getMontantAReglerEnEuros(), locataireDto, location.getRemarque(), concessionnaireDto,
 				statutDto, (byte) location.getParasols().size());
 		List<ParasolDto> parasols = new ArrayList<>();

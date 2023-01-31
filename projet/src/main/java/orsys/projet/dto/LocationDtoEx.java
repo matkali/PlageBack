@@ -20,14 +20,14 @@ public class LocationDtoEx extends LocationDto {
 	
 	List<ParasolDto> parasols;
 
-	public LocationDtoEx(@NonNull LocalDate dateDebut, @NonNull LocalDate dateFin, double montantAReglerEnEuros, LocataireDto locataire,
+	public LocationDtoEx(Long id,@NonNull LocalDate dateDebut, @NonNull LocalDate dateFin, double montantAReglerEnEuros, LocataireDto locataire,
 			String remarque, ConcessionnaireDto concessionnaire, StatutDto statut, byte nbParasols) {
-		super(dateDebut, dateFin, montantAReglerEnEuros,locataire, remarque, concessionnaire, statut, nbParasols);
+		super(id,dateDebut, dateFin, montantAReglerEnEuros,locataire, remarque, concessionnaire, statut, nbParasols);
 	}
 	
-	public LocationDtoEx(@NonNull LocalDate dateDebut, @NonNull LocalDate dateFin, double montantAReglerEnEuros, 
+	public LocationDtoEx(Long id,@NonNull LocalDate dateDebut, @NonNull LocalDate dateFin, double montantAReglerEnEuros, 
 			String remarque, @NonNull ConcessionnaireDto concessionnaire, StatutDto statut, byte nbParasols, List<ParasolDto> parasolsList, LocataireDto locataire) {
-		super(dateDebut, dateFin, montantAReglerEnEuros,locataire, remarque, concessionnaire, statut, nbParasols);
+		super(id,dateDebut, dateFin, montantAReglerEnEuros,locataire, remarque, concessionnaire, statut, nbParasols);
 		this.parasols = parasolsList;
 	}
 

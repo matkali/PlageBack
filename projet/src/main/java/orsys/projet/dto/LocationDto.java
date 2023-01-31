@@ -19,6 +19,8 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class LocationDto {
+	Long id;
+	
 	LocalDate dateDebut;
 
 	LocalDate dateFin;

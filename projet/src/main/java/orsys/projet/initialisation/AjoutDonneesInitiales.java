@@ -1,6 +1,8 @@
 package orsys.projet.initialisation;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +18,6 @@ import com.github.javafaker.Faker;
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
 
-import lombok.AllArgsConstructor;
 import orsys.projet.business.Concessionnaire;
 import orsys.projet.business.File;
 import orsys.projet.business.LienDeParente;
@@ -88,7 +89,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	private Concessionnaire Mateo;
 	private Locataire Lola;
 	private Locataire FX;
-	
+
 	private Location location1;
 	private Location location2;
 	private Location location3;
@@ -116,12 +117,13 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 
 	private void ajouterLocation() {
 		LocalDate dateToday = LocalDate.now();
-		
+
 		List<Parasol> parasols1 = new ArrayList<>();
 		parasols1.add(parasolR1);
 		parasols1.add(parasolR1);
 		parasols1.add(parasolR1);
-		locationEnAttente = new Location(dateToday.plusDays(1),dateToday.plusDays(3),Lola,statutEnAttente,parasols1);
+		locationEnAttente = new Location(dateToday.plusDays(1), dateToday.plusDays(3), Lola, statutEnAttente,
+				parasols1);
 		locationDao.save(locationEnAttente);
 		List<Parasol> parasols2 = new ArrayList<>();
 		parasols2.add(parasolR8);
@@ -136,22 +138,23 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		parasols2.add(parasolR8);
 		parasols2.add(parasolR8);
 		parasols2.add(parasolR8);
-		locationRefusee = new Location(dateToday.plusDays(1),dateToday.plusDays(4),FX,Mateo,statutRefuse,parasols2);
+		locationRefusee = new Location(dateToday.plusDays(1), dateToday.plusDays(4), FX, Mateo, statutRefuse,
+				parasols2);
 		locationDao.save(locationRefusee);
 		List<Parasol> parasols3 = new ArrayList<>();
 		parasols3.add(parasol1A);
 		parasols3.add(parasol1B);
 		parasols3.add(parasol1J);
-		location1 = new Location(dateToday,dateToday.plusDays(3),FX,Mateo,statutAcceptee,parasols3);
+		location1 = new Location(dateToday, dateToday.plusDays(3), FX, Mateo, statutAcceptee, parasols3);
 		location1.setRemarque("Merci de mettre ma belle-mère à l'écart");
 		locationDao.save(location1);
 		List<Parasol> parasols4 = parasolsFile2;
-		location2 = new Location(dateToday.minusDays(2),dateToday,Lola,Mateo,statutAcceptee,parasols4);
+		location2 = new Location(dateToday.minusDays(2), dateToday, Lola, Mateo, statutAcceptee, parasols4);
 		locationDao.save(location2);
 		List<Parasol> parasols5 = new ArrayList<>();
 		parasols5.add(parasol8I);
 		parasols5.add(parasol8J);
-		location3 = new Location(dateToday.minusDays(2),dateToday.plusDays(4),Lola,Mateo,statutAcceptee,parasols5);
+		location3 = new Location(dateToday.minusDays(2), dateToday.plusDays(4), Lola, Mateo, statutAcceptee, parasols5);
 		locationDao.save(location3);
 	}
 
@@ -173,7 +176,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		if (parasolDao.count() == 0) {
 			for (File file : files) {
 				if (file == file1) {
-					parasolR1 = new Parasol((byte) -1, file);					
+					parasolR1 = new Parasol((byte) -1, file);
 					parasol1A = new Parasol((byte) 0, file);
 					parasol1B = new Parasol((byte) 1, file);
 					parasolDao.save(parasolR1);
@@ -194,13 +197,13 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 					parasol8J = new Parasol((byte) 9, file);
 					parasolDao.save(parasol8I);
 					parasolDao.save(parasol8J);
-				} else if (file == file2){
+				} else if (file == file2) {
 					parasolsFile2 = new ArrayList<>();
 					parasolDao.save(new Parasol((byte) -1, file));
 					for (int i = 0; i < 10; i++) {
 						parasolsFile2.add(new Parasol((byte) i, file));
 					}
-					for(Parasol parasol:parasolsFile2) {
+					for (Parasol parasol : parasolsFile2) {
 						parasolDao.save(parasol);
 					}
 				} else {
@@ -248,9 +251,11 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 			for (int i = 0; i < 100; i++) {
 				Pays pays = listPays.get(rand.nextInt(listPays.size()));
 				LienDeParente lienDeParente = lienDeParentes.get(rand.nextInt(lienDeParentes.size()));
-				locataireDao.save(new Locataire(faker.name().lastName(), faker.name().firstName(),
+				Locataire locataire = new Locataire(faker.name().lastName(), faker.name().firstName(),
 						fakeValuesService.letterify("?????@gmail.com"), faker.internet().password(3, 8), lienDeParente,
-						pays));
+						pays);
+				locataire.setDateHeureInscription(locataire.getDateHeureInscription().minus(i,ChronoUnit.MILLIS));
+				locataireDao.save(locataire);
 			}
 			Lola = new Locataire("lola", "lola", "lol@gmail.com", "123", lienCousin, paysGrece);
 			FX = new Locataire("fx", "fx", "fx@orsys.fr", "abc", lienDefaut, paysFrance);
