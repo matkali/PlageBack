@@ -59,9 +59,11 @@ public class LocationRestController {
 		return locationMapper.toDto(locationService.recupererLocationParStatut(statut));
 	}
 
-	@PostMapping(value = "location")
-	public LocationDtoEx getLocation(@RequestParam("ID") Long id) {
-		return locationMapper.toDtoEx(locationService.recupererLocationParId(id));
+	@GetMapping("location/{id}")
+	public ResponseEntity<Location> getLocationById(@PathVariable Long id) {
+		Location location = locationService.recupererLocationParId(id);
+		return ResponseEntity.ok(location);
+//		return locationMapper.toDtoEx(locationService.recupererLocationParId(id));
 	}
 	
 	@PostMapping("utilisateurs/creationLocation")
