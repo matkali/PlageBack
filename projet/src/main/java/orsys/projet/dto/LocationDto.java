@@ -31,12 +31,9 @@ public class LocationDto {
 	@Column(length = 500)
 	String remarque;
 
-	@ManyToOne
 	ConcessionnaireDto concessionnaire;
 
-	@ManyToOne
 	StatutDto statut;
 
 	byte nbParasols;
-
 }
