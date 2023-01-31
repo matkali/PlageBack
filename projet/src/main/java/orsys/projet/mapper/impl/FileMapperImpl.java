@@ -5,13 +5,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import orsys.projet.business.File;
 import orsys.projet.business.Parasol;
 import orsys.projet.dto.FileDto;
 import orsys.projet.dto.ParasolDto;
 import orsys.projet.mapper.FileMapper;
 import orsys.projet.mapper.ParasolMapper;
-
+@Component
 public class FileMapperImpl implements FileMapper {
 
 	@Override
