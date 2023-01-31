@@ -28,7 +28,7 @@ public class LocationMapperImpl implements LocationMapper {
 		LocataireDto locataireDto = locataireMapper.toDto(location.getLocataire());
 		ConcessionnaireMapper concessionnaireMapper = new ConcessionnaireMapperImpl();
 		ConcessionnaireDto concessionnaireDto = concessionnaireMapper.toDto(location.getConcessionnaire());
-		concessionnaireDto.setRole("concessionnaire");
+		if(concessionnaireDto!=null) {concessionnaireDto.setRole("concessionnaire");}
 		StatutDto statutDto = statutMapper.toDto(location.getStatut());
 		return new LocationDto(location.getDateDebut(), location.getDateFin(), location.getMontantAReglerEnEuros(),
 				locataireDto, location.getRemarque(), concessionnaireDto, statutDto,

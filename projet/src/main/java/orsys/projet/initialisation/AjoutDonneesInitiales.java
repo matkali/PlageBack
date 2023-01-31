@@ -121,7 +121,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		parasols1.add(parasolR1);
 		parasols1.add(parasolR1);
 		parasols1.add(parasolR1);
-		locationEnAttente = new Location(dateToday.plusDays(1),dateToday.plusDays(3),Lola,Mateo,statutEnAttente,parasols1);
+		locationEnAttente = new Location(dateToday.plusDays(1),dateToday.plusDays(3),Lola,statutEnAttente,parasols1);
 		locationDao.save(locationEnAttente);
 		List<Parasol> parasols2 = new ArrayList<>();
 		parasols2.add(parasolR8);
