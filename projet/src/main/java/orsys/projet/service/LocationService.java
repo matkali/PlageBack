@@ -38,4 +38,6 @@ public interface LocationService {
 	List<Location> recupererLocationParClient(Locataire locataire);
 	
 	List<Location> recupererLocationParClientID(Long id);
+	
+	Location modifierLocation(Location location);
 }

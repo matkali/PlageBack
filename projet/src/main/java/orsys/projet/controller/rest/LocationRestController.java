@@ -104,9 +104,9 @@ public class LocationRestController {
 	@PostMapping("utilisateurs/validationLocation")
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public ResponseEntity<Location> validationPost(@RequestBody LocationDtoEx locationDto){
-		Statut statut = statutService.recupererStatutsParDebutNom("En").get(0);
-		Concessionnaire concessionnaire = utilisateurService.recupererConcessionnaires().get(0);
-		Locataire locataire = (Locataire) utilisateurService.recupererUtilisateurParEmail(locationDto.getLocataire().getEmail());
+		Location location = locationService.recupererLocationParId(locationDto.getId());
+		Statut statut = statutService.recupererStatutsParDebutNom("Acc").get(0);
+		location.setStatut(statut);
 		List<ParasolDto> parasolsDto = locationDto.getParasols();
 		List<Parasol> parasols = new ArrayList<>();
 		for(ParasolDto parasol : parasolsDto) {
@@ -114,7 +114,8 @@ public class LocationRestController {
 			Parasol para = parasolService.recupererParasolParNumEtFile((byte)parasol.getNumEmplacement(), fileService.recupererFile((byte) parasol.getNumFile()));
 			parasols.add(para);
 		}
-		Location location = locationService.enregisterLocation(locationDto.getDateDebut(), locationDto.getDateFin(), parasols, locataire, statut, concessionnaire, locationDto.getRemarque());
+		location.setParasols(parasols);
+		locationService.modifierLocation(location);
 		return new ResponseEntity<>(location, HttpStatus.CREATED);
 	}
 

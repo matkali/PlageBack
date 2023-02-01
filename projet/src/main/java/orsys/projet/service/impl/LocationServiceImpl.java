@@ -26,10 +26,11 @@ public class LocationServiceImpl implements LocationService {
 
 	@Override
 	public Location enregisterLocation(Location location) {
-//		if (locationDao.existsById(location.getId())) {
-//			throw new LocationExistanteException();
-//		} else {
+		if (locationDao.existsById(location.getId())) {
+			throw new LocationExistanteException();
+		} else {
 		return locationDao.save(location);
+		}
 	}
 
 	@Override
@@ -115,6 +116,15 @@ public class LocationServiceImpl implements LocationService {
 	@Override
 	public List<Location> recupererLocationParClientID(Long id) {
 		return locationDao.findLocationByLocataireId(id);
+	}
+
+	@Override
+	public Location modifierLocation(Location location) {
+		if (!locationDao.existsById(location.getId())) {
+			throw new LocationInexistanteException();
+		} else {
+		return locationDao.save(location);
+		}
 	}
 
 }
