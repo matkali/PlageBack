@@ -16,14 +16,20 @@ import orsys.projet.mapper.ParasolMapper;
 @Component
 public class FileMapperImpl implements FileMapper {
 
+	
+	/**
+	 * Retourne une fileDto, contenant les parasols avec un boolean correspondant à la
+	 *  disponibilité entre dateDeb et dateFin
+	 */
 	@Override
 	public FileDto toDto(File file, LocalDate dateDeb, LocalDate dateFin) {
 		ParasolMapper parasolMapper = new ParasolMapperImpl();
 		List<Parasol> parasols = file.getParasols();
 		List<ParasolDto> parasolDtos = new ArrayList<>();
+		// Les parasolDto sont contenus dans la fileDto
 		for (Parasol parasol : parasols) {
 			parasolDtos.add(parasolMapper.toDto(parasol, dateDeb, dateFin));
-		}
+		} 
 		Collections.sort(parasolDtos, (a, b) -> a.getNumEmplacement() < b.getNumEmplacement() ? -1
 				: a.getNumEmplacement() == b.getNumEmplacement() ? 0 : 1);
 		byte chemin = (byte) 4; // Le chemin est après le 5ème parasol par défaut

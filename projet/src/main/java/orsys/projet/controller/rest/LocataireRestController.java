@@ -24,7 +24,6 @@ public class LocataireRestController {
 
 	@GetMapping(value = "locataires")
 	public List<LocataireDto> getLocataire() {
-		// TODO vérifier la session
 		return locataireMapper.toDto(utilisateurService.recupererLocataires());
 	}
 

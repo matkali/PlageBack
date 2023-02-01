@@ -75,14 +75,19 @@ public class Location {
 		calculMontantARegler();
 	}
 
+	// Le montant est calculé par cette fonction appelée par les constructeurs
 	private void calculMontantARegler() {
+		// Initialisation à 0
 		this.montantAReglerEnEuros = (double) 0;
 		for (Parasol parasol : this.parasols) {
+			// Prix par parasol
 			this.montantAReglerEnEuros += parasol.getFile().getPrixJournalier();
 		}
 		int nbJours = (int) this.dateDebut.until(dateFin, ChronoUnit.DAYS) + 1;
+		// multiplication par le nombre de jours
 		this.montantAReglerEnEuros *= nbJours;
 		float coef = this.locataire.getLienDeParente().getCoefficient();
+		// multiplication par le coefficient familial
 		this.montantAReglerEnEuros *= coef;
 	}
 

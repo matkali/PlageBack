@@ -25,7 +25,6 @@ public class FileRestController {
 	public List<FileDto> getFilesInfo(
 			@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable("dateDeb") LocalDate dateDeb,
 			@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable("dateFin") LocalDate dateFin) {
-		// TODO vérifier la session
 		return fileService.recupererFilesInfo(dateDeb, dateFin);
 	}
 }

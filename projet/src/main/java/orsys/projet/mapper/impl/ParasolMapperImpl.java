@@ -12,6 +12,10 @@ import orsys.projet.mapper.ParasolMapper;
 @Component
 public class ParasolMapperImpl implements ParasolMapper {
 
+	/**
+	 * retourne un ParasolDto avec le boolean reserve correspondant
+	 *  à la disponibilité entre les dates dateDeb et dateFin
+	 */
 	@Override
 	public ParasolDto toDto(Parasol parasol, LocalDate dateDeb, LocalDate dateFin) {
 		boolean reserve = false;

@@ -76,11 +76,13 @@ public class LocationRestController {
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public ResponseEntity<Location> locationPost(@RequestBody LocationDtoEx locationDto){
 		Statut statut = statutService.recupererStatutsParDebutNom("En").get(0);
+		// Il y a un seul concessionnaire pour le moment
 		Concessionnaire concessionnaire = utilisateurService.recupererConcessionnaires().get(0);
 		Locataire locataire = (Locataire) utilisateurService.recupererUtilisateurParEmail(locationDto.getLocataire().getEmail());
 		List<ParasolDto> parasolsDto = locationDto.getParasols();
 		List<Parasol> parasols = new ArrayList<>();
 		for(ParasolDto parasol : parasolsDto) {
+			// On ajoute toujours un parasol en numEmplacement 0, à la file renseignée dans le parasolDto
 			Parasol para = parasolService.recupererParasolParNumEtFile((byte) -1, fileService.recupererFile((byte) parasol.getNumFile()));
 			parasols.add(para);
 		}
@@ -108,6 +110,7 @@ public class LocationRestController {
 		List<ParasolDto> parasolsDto = locationDto.getParasols();
 		List<Parasol> parasols = new ArrayList<>();
 		for(ParasolDto parasol : parasolsDto) {
+			// Les parasols sont caractérisés par leur numéro d'emplacement et de file, contenu dans parasolDto
 			Parasol para = parasolService.recupererParasolParNumEtFile((byte)parasol.getNumEmplacement(), fileService.recupererFile((byte) parasol.getNumFile()));
 			parasols.add(para);
 		}
