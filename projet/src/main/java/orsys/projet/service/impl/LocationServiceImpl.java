@@ -20,16 +20,20 @@ import orsys.projet.service.LocationService;
 
 @Service
 public class LocationServiceImpl implements LocationService {
-	
+
 	@Autowired
 	private LocationDao locationDao;
 
 	@Override
 	public Location enregisterLocation(Location location) {
-		if (locationDao.existsById(location.getId())) {
-			throw new LocationExistanteException();
+		if (location.getId() != null) {
+			if (locationDao.existsById(location.getId())) {
+				throw new LocationExistanteException();
+			} else {
+				return locationDao.save(location);
+			}
 		} else {
-		return locationDao.save(location);
+			return locationDao.save(location);
 		}
 	}
 
@@ -42,13 +46,13 @@ public class LocationServiceImpl implements LocationService {
 	@Override
 	public Location enregisterLocation(LocalDate dateDebut, LocalDate dateFin, List<Parasol> parasols,
 			Locataire locataire, Statut statut, Concessionnaire concessionnaire) {
-		return enregisterLocation(new Location(dateDebut, dateFin, locataire, concessionnaire,statut, parasols));
+		return enregisterLocation(new Location(dateDebut, dateFin, locataire, concessionnaire, statut, parasols));
 	}
 
 	@Override
 	public Location enregisterLocation(LocalDate dateDebut, LocalDate dateFin, List<Parasol> parasols,
 			Locataire locataire, Statut statut, Concessionnaire concessionnaire, String remarque) {
-		Location location=new Location(dateDebut, dateFin, locataire, concessionnaire, statut, parasols);
+		Location location = new Location(dateDebut, dateFin, locataire, concessionnaire, statut, parasols);
 		location.setRemarque(remarque);
 		return enregisterLocation(location);
 	}
@@ -70,8 +74,8 @@ public class LocationServiceImpl implements LocationService {
 
 	@Override
 	public Location changerStatutLocation(Long id, Statut statut) {
-		Location location=locationDao.findById(id).orElse(null);
-		if(location==null) {
+		Location location = locationDao.findById(id).orElse(null);
+		if (location == null) {
 			throw new LocationInexistanteException();
 		}
 		location.setStatut(statut);
@@ -80,8 +84,8 @@ public class LocationServiceImpl implements LocationService {
 
 	@Override
 	public Location changerParasolsLocation(Long id, List<Parasol> parasols) {
-		Location location=locationDao.findById(id).orElse(null);
-		if(location==null) {
+		Location location = locationDao.findById(id).orElse(null);
+		if (location == null) {
 			throw new LocationInexistanteException();
 		}
 		location.setParasols(parasols);
@@ -90,8 +94,8 @@ public class LocationServiceImpl implements LocationService {
 
 	@Override
 	public Location changerMontantLocation(Long id, double montant) {
-		Location location=locationDao.findById(id).orElse(null);
-		if(location==null) {
+		Location location = locationDao.findById(id).orElse(null);
+		if (location == null) {
 			throw new LocationInexistanteException();
 		}
 		location.setMontantAReglerEnEuros(montant);
@@ -123,7 +127,7 @@ public class LocationServiceImpl implements LocationService {
 		if (!locationDao.existsById(location.getId())) {
 			throw new LocationInexistanteException();
 		} else {
-		return locationDao.save(location);
+			return locationDao.save(location);
 		}
 	}
 
