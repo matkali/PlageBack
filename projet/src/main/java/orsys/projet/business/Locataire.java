@@ -26,16 +26,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 public class Locataire extends Utilisateur{
-	public Locataire(@NonNull @Pattern(regexp = "[a-zA-Z]+") String nom,
-			@NonNull @Pattern(regexp = "[a-zA-Z]+") String prenom, @NonNull @Email String email,
-			@NonNull @Size(min = 3, message = "Le mot de passe doit comporter au moins trois caractères") String motDePasse, LienDeParente lienDeParente,
-			@NonNull Pays pays) {
-		super(nom, prenom, email, motDePasse);
-		this.dateHeureInscription = LocalDateTime.now();
-		this.lienDeParente = lienDeParente;
-		this.pays = pays;
-	}
-
+	
 	@NonNull
 	@PastOrPresent
 	private LocalDateTime dateHeureInscription;
@@ -50,5 +41,16 @@ public class Locataire extends Utilisateur{
 	@JsonIgnore
 	@OneToMany(mappedBy = "locataire", fetch = FetchType.EAGER)
 	private List<Location> locations;
+	
+	public Locataire(@NonNull @Pattern(regexp = "[a-zA-Z]+") String nom,
+			@NonNull @Pattern(regexp = "[a-zA-Z]+") String prenom, @NonNull @Email String email,
+			@NonNull @Size(min = 3, message = "Le mot de passe doit comporter au moins trois caractères") String motDePasse, LienDeParente lienDeParente,
+			@NonNull Pays pays) {
+		super(nom, prenom, email, motDePasse);
+		this.dateHeureInscription = LocalDateTime.now();
+		this.lienDeParente = lienDeParente;
+		this.pays = pays;
+	}
+
 	
 }

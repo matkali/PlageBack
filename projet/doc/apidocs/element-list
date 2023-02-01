@@ -1,0 +1,12 @@
+orsys.projet
+orsys.projet.business
+orsys.projet.controller
+orsys.projet.controller.rest
+orsys.projet.dao
+orsys.projet.dto
+orsys.projet.exception
+orsys.projet.initialisation
+orsys.projet.mapper
+orsys.projet.mapper.impl
+orsys.projet.service
+orsys.projet.service.impl
