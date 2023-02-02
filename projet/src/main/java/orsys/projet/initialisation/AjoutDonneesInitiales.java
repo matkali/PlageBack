@@ -241,7 +241,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	}
 
 	private void ajouterConcessionnaire() {
-		Mateo = new Concessionnaire("Rossini", "Mateo", "rossini.mateo@gmail.com", "123", "0611223344");
+		Mateo = new Concessionnaire("Rossini", "Peppe", "peppe@orsys.fr", "123", "0611223344");
 		concessionnaireDao.save(Mateo);
 
 	}
@@ -257,7 +257,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 				locataire.setDateHeureInscription(locataire.getDateHeureInscription().minus(i,ChronoUnit.MILLIS));
 				locataireDao.save(locataire);
 			}
-			Lola = new Locataire("lola", "lola", "lol@gmail.com", "123", lienCousin, paysGrece);
+			Lola = new Locataire("lola", "lola", "lola@gmail.com", "123", lienCousin, paysGrece);
 			FX = new Locataire("fx", "fx", "fx@orsys.fr", "abc", lienDefaut, paysFrance);
 			locataireDao.save(Lola);
 			locataireDao.save(FX);
